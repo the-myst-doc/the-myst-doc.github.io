@@ -4,125 +4,272 @@
 }
 
 body {
-    background: #555;
+    background-image: url('./img/Cyan_HQ_blurred.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ddd;
     margin: 0;
     box-shadow: inset 0 0 120px black;
-    cursor: url('./img/pointer_hand.png'), auto;
     overflow: hidden;
+    height: 100vh;
 }
 
-img {
-    width: 1500px;
-    /* height: 100vh; */
-    /* display: block; */
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-}
-
-#linking-panel {
+#camera {
     position: absolute;
-    left: 191px;
-    top: 354px;
-    width: 410px;
+    bottom: -1100px;
+    left: 50%;
+    transform: translateX(-52%);
+    cursor: url('./img/pointer_hand.png'), auto;
+}
+
+#camera img {
+    transform: rotateZ(1deg);
+    width: 800px;
+}
+
+#camera div {
+    width: 300px;
+    height: 205px;
+    position: absolute;
+    top: 195px;
+    left: 280px;
+    box-shadow: inset 0 0 40px black;
+}
+
+#static {
+    width: 400px;
+    height: 220px;
+    position: absolute;
+    top: 185px;
+    left: 229px;
+    border-radius: 20px;
+    box-shadow: inset 0 0 40px black;
+    animation: staticFade 3s infinite alternate;
+    background-color: red;
     z-index: -1;
-    transform: skewY(-1deg);
+}
+
+@keyframes staticFade {
+    0% {
+        opacity: .1;
+    }
+    60% {
+        opacity: .4;
+    }
+    100% {
+        opacity: .75;
+    }
+}
+
+#viewscreen {
+    background-image: url('./img/Cyan_HQ_grayscale.jpg');
+    background-position: -800px -30px;
+
+    filter: brightness(.7) sepia(100%) hue-rotate(-50deg) saturate(2);
+    z-index: -2;
+}
+
+#blurbs {
+    width: 100%;
+    padding-top: 120px;
+    text-align: center;
+}
+
+.blurb {
+    display: inline-block;
+    width: 35%;
+    min-width: 400px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    margin: 30px;
+    padding: 20px 10px 20px 0;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 10pt;
+}
+
+.blurb h3 {
+    margin: 0 0 7px 0;
+    font-weight: bold;
+}
+.blurb span {
+    overflow: hidden;
+    display: inline-block;
+    width: 50%;
+}
+.blurb span:first-child {
+    float: left;
+}
+.blurb span:last-child {
+    float: right;
+    text-align: left;
+}
+.blurb .thumbnail {
+    background-color: black;
+    width: 160px;
+    height: 200px;
+    object-fit: cover;
+    line-height: 100%;
+    filter: saturate(0.6);
+}
+.blurb .blurb-content {
+    line-height: 18px;
+}
+
+@media (max-width: 800px) {
+    #title br, #title .divider {
+        display: none;
+    }
+
+    #title span {
+        display: block!important;
+    }
+
+    #title h1, #title h2 {
+        text-align: center!important;
+    }
+
+    #title h1 {
+        line-height: 100px!important;
+    }
+    #title h2 {
+        font-size: 14pt!important;
+        letter-spacing: 1px!important;
+    }
+
+    #blurbs div {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #gears {
+        display: none;
+    }
 }
 
 #title {
     color: white;
     position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    text-align: center;
-    backdrop-filter: blur(8px);
-    background-color: rgba(0, 0, 0, .25);
-    padding: 0 80px;
-    transform: scale(90%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-color: rgba(0, 0, 0, .4);
+    display: table;
+    z-index: 2;
+    user-select: none;
+}
+
+#title span {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 #title h1 {
     margin: 0;
-    font-size: 100pt;
+    padding: 0;
+    line-height: 120px;
+    
+    font-size: 86pt;
     font-family: Myst;
     font-weight: 400;
-    line-height: 140px;
+
+    text-align: right;
     letter-spacing: 15px;
-    text-shadow: 4px 1px 3px rgba(0, 0, 0, .7);
+    
+    text-shadow: 4px 1px 3px rgba(0, 0, 0, .25);
+    background: linear-gradient(0, orange, yellow);
+
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+    filter: saturate(.75);
 }
 
 #title h2 {
-    margin: 20px 0;
+    margin: 0;
+    line-height: 28px;
     font-family: 'Special Elite', sans-serif;
-    font-size: 30pt;
+    font-size: 19pt;
     font-weight: 200;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     text-shadow: 2px 1px 0 rgba(0, 0, 0, .5);
 }
 
 #title .divider {
     background-color: white;
+    width: 2px;
+    height: 70px;
+    margin: 0 10px 0 15px;
+    opacity: 0.8;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    height: 3px;
+    height: 60px;
+    background-color: rgba(20, 20, 20, .6);
+    z-index: 2;
 }
 
 #email {
-    position: absolute;
-    bottom: 67px;
-    left: 50%;
-    transform: translateX(-50%);
     height: 40px;
     width: 400px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
     font-size: 18px;
     font-family: 'Exo 2', sans-serif;
     padding-left: 10px;
-    background-color: rgba(255, 255, 255, 0.7);
+
+    background-color: white;
+
     border: none;
     border-radius: 5px;
-    z-index: 2;
 }
 
 #gears {
     position: absolute;
-    bottom: 50px;
-    left: calc(50% + 136px);
-    width: 150px;
-    height: 150px;
-    opacity: .9;
-    transform: rotate(5deg);
+    bottom: 0;
+    left: calc(50% + 205px);
+    width: 100px;
+    height: 60px;
+    opacity: .75;
+}
+
+#gears img {
+    border-radius: 20px;
 }
 
 #gears.validated {
     opacity: 1;
+    cursor: pointer;
 }
 
-.validated #big-gear {
-    filter: sepia(1) hue-rotate(100deg) saturate(20) brightness(.75)
-}
-.validated #small-gear-1, .validated #small-gear-2 {
-    filter: sepia(1) hue-rotate(290deg) saturate(100) brightness(.8);
+.validated img {
+    box-shadow: 0 0 10px white;
 }
 
 #big-gear {
-    width: 75px;
+    width: 40px;
     position: absolute;
-    top: 20px;
-    left: 50px;
-    transform: rotate(25deg);
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(25deg);
     transition: transform .1s;
 }
-#small-gear-1 {
-    width: 50px;
+#small-gear {
+    width: 33px;
     position: absolute;
-    bottom: 18px;
-    right: 5px;
-    transition: transform .1s;
-}
-#small-gear-2 {
-    width: 50px;
-    position: absolute;
-    top: 20px;
-    left: 5px;
-    transform: rotate(13deg);
-    transition: transform .1s;
+    top: 50%;
+    left: 38px;
+    transition: translateY(-50%) transform .1s;
 }
