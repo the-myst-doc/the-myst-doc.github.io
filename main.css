@@ -3,8 +3,13 @@
     src: url('./fonts/Exile_font.ttf');
 }
 
+:root {
+    --bg-color: rgba(59, 32, 22, 0.7);
+    --text-color: #fff7d3;
+}
+
 body {
-    background-image: url('./img/Cyan_HQ_blurred.jpg');
+    background-image: url('./img/sepia_cyan_blurred.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -15,11 +20,29 @@ body {
     height: 100vh;
 }
 
+#social {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
+
+#social a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 -1px;
+    opacity: 0.6;
+}
+
+#social a:hover {
+    opacity: 1;
+}
+
 #camera {
     position: absolute;
-    bottom: -1100px;
+    bottom: -900px;
     left: 50%;
-    transform: translateX(-52%);
+    transform: translateX(-55%);
     cursor: url('./img/pointer_hand.png'), auto;
 }
 
@@ -34,7 +57,7 @@ body {
     position: absolute;
     top: 195px;
     left: 280px;
-    box-shadow: inset 0 0 40px black;
+    box-shadow: inset 0 0 45px black;
 }
 
 #static {
@@ -70,116 +93,65 @@ body {
     z-index: -2;
 }
 
-#blurbs {
-    width: 100%;
-    padding-top: 120px;
-    text-align: center;
-}
-
-.blurb {
-    display: inline-block;
-    width: 35%;
-    min-width: 400px;
-    height: 200px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    margin: 30px;
-    padding: 20px 10px 20px 0;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 10pt;
-}
-
-.blurb h3 {
-    margin: 0 0 7px 0;
-    font-weight: bold;
-}
-.blurb span {
-    overflow: hidden;
-    display: inline-block;
-    width: 50%;
-}
-.blurb span:first-child {
-    float: left;
-}
-.blurb span:last-child {
-    float: right;
-    text-align: left;
-}
-.blurb .thumbnail {
-    background-color: black;
-    width: 160px;
-    height: 200px;
-    object-fit: cover;
-    line-height: 100%;
-    filter: saturate(0.6);
-}
-.blurb .blurb-content {
-    line-height: 18px;
+#viewscreen.locked {
+    background-image: none;
+    background-color: #ff7b7b;
+    filter: none;
 }
 
 @media (max-width: 800px) {
-    #title br, #title .divider {
-        display: none;
-    }
-
-    #title span {
-        display: block!important;
-    }
-
-    #title h1, #title h2 {
-        text-align: center!important;
-    }
-
-    #title h1 {
-        line-height: 100px!important;
-    }
-    #title h2 {
-        font-size: 14pt!important;
-        letter-spacing: 1px!important;
-    }
-
-    #blurbs div {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     #gears {
         display: none;
     }
 }
 
 #title {
-    color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    background-color: rgba(0, 0, 0, .4);
     display: table;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 450px;
+    height: 220px;
+    overflow: hidden;
     z-index: 2;
-    user-select: none;
 }
 
-#title span {
+#title-bg {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleY(1.2) rotateZ(45deg);
+    background-color: var(--bg-color);
+    box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+h1 {
     display: table-cell;
     vertical-align: middle;
+    color: var(--text-color);
+    margin: 0 auto 0 auto;
+    padding: 10px;
+    font-family: 'Special Elite', sans-serif;
+    font-size: 30pt;
+    font-weight: 100;
+    letter-spacing: 7px;
+    text-shadow: 2px 1px 0 rgba(0, 0, 0, .5);
+    text-align: center;
 }
 
-#title h1 {
-    margin: 0;
-    padding: 0;
-    line-height: 120px;
-    
+.myst-logo {
     font-size: 86pt;
     font-family: Myst;
     font-weight: 400;
 
-    text-align: right;
+    line-height: 110px;
     letter-spacing: 15px;
-    
-    text-shadow: 4px 1px 3px rgba(0, 0, 0, .25);
+
+    text-shadow: 4px 1px 3px rgba(0, 0, 0, .3);
     background: linear-gradient(0, orange, yellow);
 
     -webkit-background-clip: text;
@@ -190,59 +162,54 @@ body {
     filter: saturate(.75);
 }
 
-#title h2 {
-    margin: 0;
-    line-height: 28px;
-    font-family: 'Special Elite', sans-serif;
-    font-size: 19pt;
-    font-weight: 200;
-    letter-spacing: 4px;
-    text-shadow: 2px 1px 0 rgba(0, 0, 0, .5);
-}
-
-#title .divider {
-    background-color: white;
-    width: 2px;
-    height: 70px;
-    margin: 0 10px 0 15px;
-    opacity: 0.8;
-}
-
 #footer {
+    padding: 10px;
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 60px;
-    background-color: rgba(20, 20, 20, .6);
+    background-color: var(--bg-color);
     z-index: 2;
+    margin: 0;
+    text-align: center;
+}
+
+#tagline {
+    margin: 10px;
+    display: none;
+}
+
+#footer form {
+    margin: 0;
+    font-style: italic;
+    font-size: 24px;
+    font-family: 'Exo 2', sans-serif;
+    color: white;
+    display: inline-block;
+}
+
+#footer label {
+    margin-right: 10px;
+    text-shadow: 0 0 5px gold;
+    display: inline-block;
 }
 
 #email {
     height: 40px;
-    width: 400px;
+    width: 350px;
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+    padding-left: 10px;
     font-size: 18px;
     font-family: 'Exo 2', sans-serif;
-    padding-left: 10px;
-
-    background-color: white;
 
     border: none;
     border-radius: 5px;
 }
 
 #gears {
-    position: absolute;
-    bottom: 0;
-    left: calc(50% + 205px);
-    width: 100px;
-    height: 60px;
-    opacity: .75;
+    display: inline-block;
+    height: 14px;
+    opacity: .5;
+    position: relative;
 }
 
 #gears img {
@@ -254,12 +221,8 @@ body {
     cursor: pointer;
 }
 
-.validated img {
-    box-shadow: 0 0 10px white;
-}
-
 #big-gear {
-    width: 40px;
+    width: 35px;
     position: absolute;
     top: 50%;
     left: 0;
@@ -267,9 +230,9 @@ body {
     transition: transform .1s;
 }
 #small-gear {
-    width: 33px;
+    width: 30px;
     position: absolute;
     top: 50%;
-    left: 38px;
+    left: 34px;
     transition: translateY(-50%) transform .1s;
 }

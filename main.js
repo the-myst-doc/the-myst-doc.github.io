@@ -75,6 +75,16 @@ $(document).ready(() => {
         }
     });
 
+    // $('#footer').submit((e) => {
+    //     e.preventDefault();
+    //     $.ajax({
+    //         url: 'https://PhilipShane.us3.list-manage.com/subscribe/post',
+    //         type: 'POST',
+    //         data: $('#footer form').serialize(),
+    //         success: () => console.log('subscribed!')
+    //     });
+    // });
+
     camera$.mousedown((e) => {
         e.preventDefault();
         clicked = true;

@@ -7,68 +7,48 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
                 integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
                 crossorigin="anonymous"></script>
+        <script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         <script src="main.js"></script>
     </head>
     <body>
         <div id="title">
-            <span>
-                <h1> MYST </h1>
-            </span>
-            <span>
-                <div class="divider"></div>
-            </span>
-            <span>
-                <h2> a new <br> documentary <br> by Philip Shane </h2>
-            </span>
+            <div id="title-bg"></div>
+            <h1> The <div class="myst-logo">MYST</div> Documentary </h1>
         </div>
 
-        <div id="blurbs">
-            <div class="blurb">
-                <span>
-                    <a href="https://cyan.com">
-                        <img class="thumbnail" src="https://cyan.com/wp-content/uploads/2019/08/CyanLogo_wText.png"></img>
-                    </a>
-                </span>
-                <span>
-                    <h3> Cyan </h3>
-                    <div class="blurb-content">
-                        Cyan, Inc., also known as Cyan Worlds, Inc., is an American video game developer. Founded as Cyan Productions by
-                        brothers Rand and Robyn Miller in 1987, the company is best known as the creator of the Myst series. The company is
-                        located in Mead, Washington, just outside Spokane.
-                    </div>
-                </span>
-            </div>
-            <div class="blurb">
-                <span>
-                    <a href="https://philipshane.squarespace.com/">
-                        <img class="thumbnail" src="https://images.squarespace-cdn.com/content/v1/53597acce4b0f7c14f4c08d2/1547671265170-G63UA0LY8WMZBQXNTU0V/ke17ZwdGBToddI8pDm48kD0Fj6-SADVSzrE02OvwOcJ7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTmmzJBBHkqvGAibxByi2-xizyN58rJcFrFnNzXGSIBUvEgshMVI6S4ACoGy0rVp9iy/philip+avatar+%28at+Victor%27s+party%29.jpg?format=1500w"></img>
-                    </a>
-                </span>
-                <span>
-                    <h3> Philip Shane </h3>
-                    <div class="blurb-content">
-                        Philip Shane is an award winning documentary filmmaker with over 25 years of experience. He was Co-Director & Editor of
-                        BEING ELMO (Winner of the Special Jury Prize at the 2011 Sundance Film Festival), and Producer & Editor of the two hour
-                        feature documentary, EINSTEIN (2008, History Channel).
-                    </div>
-                </span>
-            </div>
+        <div id="social">
+            <a href="#" target="_blank">
+                <i class="fab fa-kickstarter fa-2x fa-fw"></i>
+            </a>
+            <a href="https://twitter.com/TheMystDoc/" target="_blank">
+                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+            </a>
+            <a href="https://www.facebook.com/theMYSTdoc/" target="_blank">
+                <i class="fab fa-facebook-square fa-2x fa-fw"></i>
+            </a>
         </div>
 
         <div id="camera">
             <img src="./img/DSLR.png">
             <video id="static" muted loop autoplay>
-                <source src="./img/red_panel2.mp4" type="video/mp4">
+                <source src="./img/red_panel.mp4" type="video/mp4">
             </video>
             <div id="viewscreen"></div>
         </div>
 
         <div id="footer">
-            <input type="text" id="email" placeholder="Enter your email to stay linked...">
+            <div id="tagline"> Content... </div>
+            <form action="https://PhilipShane.us3.list-manage.com/subscribe/post" method="POST" target="hidden-form-target">
+                <label for="MERGE0"> Be the first to know more... </label>
+                <input type="text" id="email" name="MERGE0" placeholder="Email address">
+                <input type="hidden" name="u" value="c0e157c2cd74db24a3d904642">
+                <input type="hidden" name="id" value="9360d6df85">
+            </form>
             <div id="gears">
                 <img id="big-gear" src="./img/big_gear.png">
                 <img id="small-gear" src="./img/small_gear.png">
             </div>
+            <iframe name="hidden-form-target" hidden></iframe>
         </div>
     </body>
 </html>
