@@ -51,6 +51,10 @@ $(document).ready(() => {
         blurbs$.css('opacity', 3 * (cameraTop-120) / bodyHeight);
     }
 
+    function isTesting() {
+        return (['localhost', '127.0.0.1', ''].includes(location.hostname))
+    }
+
     updateBody();
     updateViewScreen();
 
@@ -75,15 +79,17 @@ $(document).ready(() => {
         }
     });
 
-    // $('#footer').submit((e) => {
-    //     e.preventDefault();
-    //     $.ajax({
-    //         url: 'https://PhilipShane.us3.list-manage.com/subscribe/post',
-    //         type: 'POST',
-    //         data: $('#footer form').serialize(),
-    //         success: () => console.log('subscribed!')
-    //     });
-    // });
+    $('#footer').submit((e) => {
+        if (!isTesting()) {
+            e.preventDefault();
+            $.ajax({
+                url: 'https://PhilipShane.us3.list-manage.com/subscribe/post',
+                type: 'POST',
+                data: $('#footer form').serialize(),
+                success: () => console.log('subscribed!')
+            });
+        }
+    });
 
     camera$.mousedown((e) => {
         e.preventDefault();
