@@ -79,17 +79,18 @@ $(document).ready(() => {
         }
     });
 
-    $('#footer').submit((e) => {
-        if (!isTesting()) {
-            e.preventDefault();
-            $.ajax({
-                url: 'https://PhilipShane.us3.list-manage.com/subscribe/post',
-                type: 'POST',
-                data: $('#footer form').serialize(),
-                success: () => console.log('subscribed!')
-            });
-        }
-    });
+    // $('#footer').submit((e) => {
+    //     if (!isTesting()) {
+    //         e.preventDefault();
+    //         $.ajax({
+    //             url: 'https://PhilipShane.us3.list-manage.com/subscribe/post-json&c=?',
+    //             type: 'POST',
+    //             data: $('#footer form').serialize(),
+    //             dataType: 'jsonp',
+    //             success: () => console.log('subscribed!')
+    //         });
+    //     }
+    // });
 
     camera$.mousedown((e) => {
         e.preventDefault();
