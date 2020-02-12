@@ -4,7 +4,7 @@ let mousePosX, mousePosY;
 let bodyWidth, bodyHeight;
 
 $(document).ready(() => {
-    const camera$ = $('#camera');
+    const camera$ = $('#video-camera');
     const viewscreen$ = $('#viewscreen');
     const body$ = $('body');
     const blurbs$ = $('#blurbs');
