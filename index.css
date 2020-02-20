@@ -61,8 +61,8 @@ body {
 #viewscreen {
     position: absolute;
     top: 21vh;
-    left: 11vh;
-    width: 53vh;
+    left: 11.6vh;
+    width: 51.6vh;
     height: 35vh;
 
     overflow: hidden;
@@ -71,22 +71,21 @@ body {
     background-size: 200% auto;
     background-position: 50% 50%;
 
-    background-color: rgb(230, 70, 70);
     box-shadow: inset 0 0 40px black, inset 0 0 80px rgba(0, 0, 0, 0.6);
 
-    z-index: -2;
+    cursor: url('./img/pointer_hand.png'), pointer;
 }
 
 #static {
     position: absolute;
-    width: 135%;
-    top: -1%;
+    width: 137.5%;
+    top: -5%;
     left: 49%;
     transform: translateX(-50%);
 
     animation: staticFade 3s infinite alternate;
 
-    z-index: -1;
+    z-index: 1;
 }
 
 @keyframes staticFade {
