@@ -15,53 +15,43 @@ $(document).ready(() => {
         $('#small-gear').css('transform', `translateY(-50%) rotate(${5-rotation}deg)`);
     }
 
-    function updateCamera(top, left) {
-        camera$.css({
-            left: `+=${left}`,
-            top: `+=${top}`,
-        });
-
-        updateViewScreen();
-    }
-
-    function updateBody() {
-        bodyWidth = body$.width();
-        bodyHeight = body$.height();
-    }
-
-    function updateViewScreen() {
-        const {left: cameraLeft, top: cameraTop} = camera$.offset();
-        const calculatedHeight = 0.75 * bodyWidth;
-        const calculatedWidth = bodyHeight / 0.75;
-
-        if (calculatedHeight > bodyHeight) {
-            const verticalOffset = (calculatedHeight - bodyHeight) / 2;
-            viewscreen$.css({
-                'background-size': `${bodyWidth}px auto`,
-                'background-position': `${-280-cameraLeft}px ${-190-verticalOffset-cameraTop}px`
-            });
-        } else {
-            const horizontalOffset = (calculatedWidth - bodyWidth) / 2;
-            viewscreen$.css({
-                'background-size': `auto ${bodyHeight}px`,
-                'background-position': `${-280-horizontalOffset-cameraLeft}px ${-190-cameraTop}px`
-            });
+    function shiftView(deltaX, deltaY) {
+        function shiftViewParam(param, delta, scale) {
+            const updatedParam = param - (delta * scale);
+            return Math.min(Math.max(0, updatedParam), 100); 
         }
 
-        blurbs$.css('opacity', 3 * (cameraTop-120) / bodyHeight);
+        function getBackgroundPosition(el$) {
+            return {
+                posX: parseFloat(el$.css('background-position-x')),
+                posY: parseFloat(el$.css('background-position-y')), 
+            };
+        }
+
+        function getRotation(amount, max) {
+            return (2 * max * (amount / 100)) - max;
+        }
+
+        const VIEWSCREEN_SCALE = .1;
+        const {posX: viewX, posY: viewY} = getBackgroundPosition(viewscreen$);
+        viewscreen$.css({
+            'background-position-x': `${shiftViewParam(viewX, deltaX, VIEWSCREEN_SCALE)}%`,
+            'background-position-y': `${shiftViewParam(viewY, deltaY, VIEWSCREEN_SCALE)}%`
+        });
+
+        camera$.css('transform', `rotateY(${-getRotation(viewX, 10)}deg) rotateX(${getRotation(viewY, 17)}deg) scale(1.1)`);
+
+        const BODY_SCALE = .025;
+        const {posX: bodyX, posY: bodyY} = getBackgroundPosition(body$);
+        body$.css({
+            'background-position-x': `${shiftViewParam(bodyX, deltaX, BODY_SCALE)}%`,
+            'background-position-y': `${shiftViewParam(bodyY, deltaY, BODY_SCALE)}%`
+        });
     }
 
     function isTesting() {
         return (['localhost', '127.0.0.1', ''].includes(location.hostname))
     }
-
-    updateBody();
-    updateViewScreen();
-
-    $(window).resize(() => {
-        updateBody();
-        updateViewScreen();
-    })
 
     $('#email')
         .keydown(() => {
@@ -73,10 +63,8 @@ $(document).ready(() => {
             $('#gears').toggleClass('validated', isValidEmail);
         });
 
-    $('#gears img').click((e) => {
-        if ($('#gears').hasClass('validated')) {
-            window.location = 'https://philipshane.squarespace.com/';
-        }
+    $('#gears.validated').click(() => {
+        $('#footer form').submit();
     });
 
     // $('#footer').submit((e) => {
@@ -102,21 +90,14 @@ $(document).ready(() => {
     $('body')
         .mouseup(() => clicked = false)
         .mousemove((e) => {
-            if (!clicked) return;
-
-            updateCamera(
-                e.clientY - mousePosY,
+            shiftView(
                 e.clientX - mousePosX,
+                e.clientY - mousePosY,
             );
 
             mousePosX = e.clientX;
             mousePosY = e.clientY;
         });
-
-    $(window).on('mousewheel', (e) => {
-        const delta = e.originalEvent.wheelDelta * .1;
-        updateCamera(delta, 0);
-    });
 
     updateGears();
 });
