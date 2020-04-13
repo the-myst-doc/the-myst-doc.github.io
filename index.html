@@ -2,6 +2,7 @@
     <head>
         <title> Myst Documentary </title>
         <meta name="robots" content="noindex">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
         <link rel="stylesheet" type="text/css" href="index.css">
         <link href="https://fonts.googleapis.com/css?family=Exo+2:300,600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
@@ -24,19 +25,17 @@
         </div>
 
         <div id="video-camera">
-            <img src="./img/video_camera.png">
-            <a href="https://goo.gl/maps/yfaaccRnHsx9eFC47">
-                <div id="viewscreen">
-                    <video id="static" muted loop autoplay>
-                        <source src="./img/red_panel.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </a>
+            <img src="./img/video_camera.png" id="camera-body">
+            <div class="zoom">
+                <img src="./img/zoom_btn_hover.png" id="zoom-btn-hover">
+                <img src="./img/zoom_btn.png" id="zoom-btn">
+            </div>
+            <div id="viewscreen"></div>
         </div>
 
         <div id="footer">
             <div id="social">
-                <a href="#" target="_blank">
+                <a href="#" target="_blank" hidden>
                     <i class="fab fa-kickstarter fa-2x fa-fw"></i>
                 </a>
                 <a href="https://twitter.com/TheMystDoc/" target="_blank">
@@ -49,17 +48,22 @@
                     <i class="fab fa-facebook-square fa-2x fa-fw"></i>
                 </a>
             </div>
-            <form action="https://PhilipShane.us3.list-manage.com/subscribe/post" method="POST" target="hidden-form-target">
-                <label for="MERGE0"> Be the first to know more... </label>
+            <div id="subscribed"><i class="fas fa-book"></i>&nbsp; Thanks for subscribing!</div>
+            <form id="sign-up" action="https://PhilipShane.us3.list-manage.com/subscribe/post" method="POST" target="mailchimp-response">
+                <label for="MERGE0"> Sign up for news: </label>
                 <input type="text" id="email" name="MERGE0" placeholder="Email address">
                 <input type="hidden" name="u" value="c0e157c2cd74db24a3d904642">
                 <input type="hidden" name="id" value="9360d6df85">
             </form>
             <div id="gears">
-                <img id="big-gear" src="./img/big_gear.png">
-                <img id="small-gear" src="./img/small_gear.png">
+                <img id="big-gear" src="./img/gear.png">
+                <img id="small-gear" src="./img/gear.png">
             </div>
-            <iframe name="hidden-form-target" hidden></iframe>
+            <iframe id="mailchimp-response" name="mailchimp-response" hidden></iframe>
         </div>
+
+        <audio id="linking-sound" preload="none">
+            <source src="./audio/linking.wav" type="audio/wav">
+        </audio>
     </body>
 </html>

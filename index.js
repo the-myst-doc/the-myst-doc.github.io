@@ -3,16 +3,24 @@ let clicked = false;
 let mousePosX, mousePosY;
 let bodyWidth, bodyHeight;
 
+const VIEWSCREEN_SCALE = .045;
+const BODY_SCALE = .03;
+
+const ZOOM_STOPS = [200, 350, 650];
+let currentZoom = 0;
+
 $(document).ready(() => {
     const camera$ = $('#video-camera');
     const viewscreen$ = $('#viewscreen');
     const body$ = $('body');
-    const blurbs$ = $('#blurbs');
+
+    const linkingSound = $('#linking-sound').get(0);
+    linkingSound.volume = 0.15;
 
     function updateGears() {
         rotation += 15;
         $('#big-gear').css('transform', `translateY(-50%) rotate(${rotation}deg)`);
-        $('#small-gear').css('transform', `translateY(-50%) rotate(${5-rotation}deg)`);
+        $('#small-gear').css('transform', `translateY(-50%) rotate(${20-rotation}deg)`);
     }
 
     function shiftView(deltaX, deltaY) {
@@ -32,7 +40,6 @@ $(document).ready(() => {
             return (2 * max * (amount / 100)) - max;
         }
 
-        const VIEWSCREEN_SCALE = .1;
         const {posX: viewX, posY: viewY} = getBackgroundPosition(viewscreen$);
         viewscreen$.css({
             'background-position-x': `${shiftViewParam(viewX, deltaX, VIEWSCREEN_SCALE)}%`,
@@ -41,7 +48,6 @@ $(document).ready(() => {
 
         camera$.css('transform', `rotateY(${-getRotation(viewX, 10)}deg) rotateX(${getRotation(viewY, 17)}deg) scale(1.1)`);
 
-        const BODY_SCALE = .025;
         const {posX: bodyX, posY: bodyY} = getBackgroundPosition(body$);
         body$.css({
             'background-position-x': `${shiftViewParam(bodyX, deltaX, BODY_SCALE)}%`,
@@ -53,6 +59,8 @@ $(document).ready(() => {
         return (['localhost', '127.0.0.1', ''].includes(location.hostname))
     }
 
+    viewscreen$.click(() => linkingSound.play());
+
     $('#email')
         .keydown(() => {
             updateGears();
@@ -60,44 +68,45 @@ $(document).ready(() => {
         .on('input', (e) => {
             const emailText = $(e.target).val();
             const isValidEmail = emailText.match(/^[\w\.]+@\w+\.\w{3}$/g) || false;
-            $('#gears').toggleClass('validated', isValidEmail);
+            $('#big-gear, #small-gear')
+                .attr('src', `./img/gear${isValidEmail ? '_glow' : ''}.png`)
+                .toggleClass('validated', isValidEmail);
         });
 
-    $('#gears.validated').click(() => {
-        $('#footer form').submit();
+    $('.zoom').click(() => {
+        currentZoom = (currentZoom + 1) % ZOOM_STOPS.length;
+        viewscreen$.css('background-size', `${ZOOM_STOPS[currentZoom]}% auto`);
     });
 
-    // $('#footer').submit((e) => {
-    //     if (!isTesting()) {
-    //         e.preventDefault();
-    //         $.ajax({
-    //             url: 'https://PhilipShane.us3.list-manage.com/subscribe/post-json&c=?',
-    //             type: 'POST',
-    //             data: $('#footer form').serialize(),
-    //             dataType: 'jsonp',
-    //             success: () => console.log('subscribed!')
-    //         });
-    //     }
-    // });
+    $(document).on('click', '#gears .validated', () => {
+        // $('#sign-up').submit();
+        $('#email').val('').trigger('input');
 
-    camera$.mousedown((e) => {
-        e.preventDefault();
-        clicked = true;
+        const subscribed$ = $('#subscribed');
+        subscribed$.animate(
+            {opacity: 1, bottom: '66px'},
+            400,
+            () => {
+                setTimeout(() => {
+                    subscribed$.animate(
+                        {opacity: 0},
+                        800,
+                        () => subscribed$.css({bottom: '46px'})
+                    );
+                }, 1700);
+            }
+        );
+    });
+
+    $('body').mousemove((e) => {
+        shiftView(
+            e.clientX - mousePosX,
+            e.clientY - mousePosY,
+        );
+
         mousePosX = e.clientX;
         mousePosY = e.clientY;
     });
-
-    $('body')
-        .mouseup(() => clicked = false)
-        .mousemove((e) => {
-            shiftView(
-                e.clientX - mousePosX,
-                e.clientY - mousePosY,
-            );
-
-            mousePosX = e.clientX;
-            mousePosY = e.clientY;
-        });
 
     updateGears();
 });
