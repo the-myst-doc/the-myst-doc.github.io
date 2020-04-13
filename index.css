@@ -41,12 +41,12 @@ body {
     color: var(--text-color);
     text-decoration: none;
     margin: 0 -1px;
-    opacity: 0.6;
-    font-size: 18px;
+    opacity: 0.55;
+    font-size: 20px;
 }
 
 #social a:hover {
-    opacity: 1;
+    opacity: .9;
 }
 
 #video-camera {
@@ -255,22 +255,21 @@ body {
     z-index: 2;
     opacity: 0.8;
 }
+#gears img {
+    position: absolute;
+    top: 50%;
+    transition: transform .1s;
+}
 #gears .validated {
     cursor: pointer;
 }
 #big-gear {
     width: 42px;
-    position: absolute;
-    top: 50%;
     left: 0;
-    transition: transform .1s;
 }
 #small-gear {
     width: 35px;
-    position: absolute;
-    top: 50%;
     left: 34px;
-    transition: transform .1s;
 }
 
 @media only screen and (max-width: 1090px) {

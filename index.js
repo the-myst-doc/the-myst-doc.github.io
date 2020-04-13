@@ -79,7 +79,7 @@ $(document).ready(() => {
     });
 
     $(document).on('click', '#gears .validated', () => {
-        // $('#sign-up').submit();
+        $('#sign-up').submit();
         $('#email').val('').trigger('input');
 
         const subscribed$ = $('#subscribed');
