@@ -59,7 +59,10 @@ $(document).ready(() => {
         return (['localhost', '127.0.0.1', ''].includes(location.hostname))
     }
 
-    viewscreen$.click(() => linkingSound.play());
+    viewscreen$.click(() => {
+        linkingSound.play();
+        $('#marker-switch').animate({opacity: 1}, 2000, () => camera$.remove());
+    });
 
     $('#email')
         .keydown(() => {
