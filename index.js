@@ -55,33 +55,7 @@ $(document).ready(() => {
         });
     }
 
-    function isTesting() {
-        return (['localhost', '127.0.0.1', ''].includes(location.hostname))
-    }
-
-    viewscreen$.click(() => {
-        linkingSound.play();
-        $('#marker-switch').animate({opacity: 1}, 2000, () => camera$.remove());
-    });
-
-    $('#email')
-        .keydown(() => {
-            updateGears();
-        })
-        .on('input', (e) => {
-            const emailText = $(e.target).val();
-            const isValidEmail = emailText.match(/^[\w\.]+@\w+\.\w{3}$/g) || false;
-            $('#big-gear, #small-gear')
-                .attr('src', `./img/gear${isValidEmail ? '_glow' : ''}.png`)
-                .toggleClass('validated', isValidEmail);
-        });
-
-    $('.zoom').click(() => {
-        currentZoom = (currentZoom + 1) % ZOOM_STOPS.length;
-        viewscreen$.css('background-size', `${ZOOM_STOPS[currentZoom]}% auto`);
-    });
-
-    $(document).on('click', '#gears .validated', () => {
+    function submitForm() {
         $('#sign-up').submit();
         $('#email').val('').trigger('input');
 
@@ -99,9 +73,41 @@ $(document).ready(() => {
                 }, 1700);
             }
         );
+    }
+
+    viewscreen$.click(() => {
+        linkingSound.play();
     });
 
+    $('#email')
+        .keydown((e) => {
+            if (e.which === 13) {
+                e.preventDefault();
+                submitForm();
+            } else {
+                updateGears();
+            }
+        })
+        .on('input', (e) => {
+            const emailText = $(e.target).val();
+            const isValidEmail = emailText.match(/^[\w\.]+@\w+\.\w{3}$/g) || false;
+            $('#big-gear, #small-gear')
+                .attr('src', `./img/gear${isValidEmail ? '_glow' : ''}.png`)
+                .toggleClass('validated', isValidEmail);
+        });
+
+    $('.zoom').click(() => {
+        currentZoom = (currentZoom + 1) % ZOOM_STOPS.length;
+        viewscreen$.css('background-size', `${ZOOM_STOPS[currentZoom]}% auto`);
+    });
+
+    $(document).on('click', '#gears .validated', () => submitForm());
+
     $('body').mousemove((e) => {
+        if (window.matchMedia('(max-device-width: 850px)').matches) {
+            return;
+        }
+
         shiftView(
             e.clientX - mousePosX,
             e.clientY - mousePosY,
