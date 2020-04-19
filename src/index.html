@@ -3,14 +3,9 @@
         <title> Myst Documentary </title>
         <meta name="robots" content="noindex">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-        <link rel="stylesheet" type="text/css" href="index.css">
         <link href="https://fonts.googleapis.com/css?family=Exo+2:300,600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-                crossorigin="anonymous"></script>
         <script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-        <script src="index.js"></script>
     </head>
     <body>
         <div id="title">
@@ -25,10 +20,10 @@
         </div>
 
         <div id="video-camera">
-            <img src="./img/video_camera.png" id="camera-body">
-            <div class="zoom">
-                <img src="./img/zoom_btn_hover.png" id="zoom-btn-hover">
-                <img src="./img/zoom_btn.png" id="zoom-btn">
+            <img id="camera-body">
+            <div id="zoom">
+                <img id="zoom-btn-hover">
+                <img id="zoom-btn">
             </div>
             <div id="viewscreen"></div>
         </div>
@@ -56,14 +51,14 @@
                 <input type="hidden" name="id" value="9360d6df85">
             </form>
             <div id="gears">
-                <img id="big-gear" src="./img/gear.png">
-                <img id="small-gear" src="./img/gear.png">
+                <img id="big-gear">
+                <img id="small-gear">
             </div>
             <iframe id="mailchimp-response" name="mailchimp-response" hidden></iframe>
         </div>
 
         <audio id="linking-sound" preload="none">
-            <source src="./audio/linking.wav" type="audio/wav">
+            <source type="audio/wav">
         </audio>
     </body>
 </html>

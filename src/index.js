@@ -1,3 +1,12 @@
+import './index.less';
+
+import Camera from '../img/video_camera.png';
+import Gear from '../img/gear.png';
+import GearGlow from '../img/gear_glow.png';
+import ZoomBtn from '../img/zoom_btn.png';
+import ZoomHover from '../img/zoom_btn_hover.png';
+import LinkingSound from '../audio/linking.wav';
+
 let rotation = 0;
 let clicked = false;
 let mousePosX, mousePosY;
@@ -14,8 +23,18 @@ $(document).ready(() => {
     const viewscreen$ = $('#viewscreen');
     const body$ = $('body');
 
-    const linkingSound = $('#linking-sound').get(0);
-    linkingSound.volume = 0.15;
+    // Load assets dynamically
+    $('#camera-body').attr('src', Camera);
+    $('#gears img').attr('src', Gear);
+    $('#zoom-btn').attr('src', ZoomBtn);
+    $('#zoom-btn-hover').attr('src', ZoomHover);
+
+    const linkingSound$ = $('#linking-sound');
+    linkingSound$.find('source').attr('src', LinkingSound);
+
+    const soundElement = linkingSound$.get(0);
+    soundElement.load();
+    soundElement.volume = 0.1;
 
     function updateGears() {
         rotation += 15;
@@ -76,7 +95,7 @@ $(document).ready(() => {
     }
 
     viewscreen$.click(() => {
-        linkingSound.play();
+        soundElement.play();
     });
 
     $('#email')
@@ -92,11 +111,11 @@ $(document).ready(() => {
             const emailText = $(e.target).val();
             const isValidEmail = emailText.match(/^[\w\.]+@\w+\.\w{3}$/g) || false;
             $('#big-gear, #small-gear')
-                .attr('src', `./img/gear${isValidEmail ? '_glow' : ''}.png`)
+                .attr('src', isValidEmail ? GearGlow : Gear)
                 .toggleClass('validated', isValidEmail);
         });
 
-    $('.zoom').click(() => {
+    $('#zoom').click(() => {
         currentZoom = (currentZoom + 1) % ZOOM_STOPS.length;
         viewscreen$.css('background-size', `${ZOOM_STOPS[currentZoom]}% auto`);
     });
