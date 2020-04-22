@@ -85,6 +85,22 @@ body {
         cursor: url('../img/pointer_hand.png'), pointer;
     }
 
+    #recording {
+        background-color: rgb(200, 0, 0);
+        opacity: .75;
+
+        width: 2.75vh;
+        height: 2.75vh;
+        border-radius: 1.5vh;
+
+        position: absolute;
+        top: 1vh;
+        left: 1vh;
+        z-index: 2;
+
+        animation: blink 1s step-start infinite;
+    }
+
     #zoom {
         cursor: pointer;
 
@@ -97,10 +113,7 @@ body {
 
         #zoom-btn {
             filter: brightness(1.4) contrast(1.2);
-            animation-name: zoom-glow;
-            animation-duration: 1s;
-            animation-iteration-count: infinite;
-            animation-direction: alternate-reverse;
+            animation: blink 2s infinite;
         }
         #zoom-btn-hover {
             display: none;
@@ -117,10 +130,9 @@ body {
     }
 }
 
-@keyframes zoom-glow {
-    from {opacity: 1}
-    to {opacity: 0}
-} 
+@keyframes blink {
+    50% {opacity: 0}
+}
 
 #title {
     position: absolute;
