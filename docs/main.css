@@ -272,6 +272,7 @@ body {
     transform: translateX(-47%) scale(0.7);
     transform-origin: 50% 15%;
   }
+  #lower-third,
   #social,
   #gears,
   #footer form label {
