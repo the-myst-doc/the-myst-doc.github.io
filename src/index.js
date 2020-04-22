@@ -140,4 +140,5 @@ $(document).ready(() => {
     });
 
     updateGears();
+    setTimeout(() => $('#lower-third').animate({left: '25px', opacity: 1}, 2000), 500);
 });

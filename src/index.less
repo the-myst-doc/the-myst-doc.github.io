@@ -86,7 +86,7 @@ body {
     }
 
     #recording {
-        background-color: rgb(200, 0, 0);
+        background-color: rgb(180, 0, 0);
         opacity: .75;
 
         width: 2.75vh;
@@ -98,11 +98,11 @@ body {
         left: 1vh;
         z-index: 2;
 
-        animation: blink 1s step-start infinite;
+        animation: blink 1.2s step-start infinite;
     }
 
     #zoom {
-        cursor: pointer;
+        cursor: url('../img/pointer_hand.png'), pointer;
 
         img {
             position: absolute;
@@ -209,8 +209,26 @@ body {
     }
 }
 
+#lower-third {
+    opacity: 0;
+
+    position: absolute;
+    z-index: 2;
+    left: -100px;
+    top: 57%;
+
+    color: @text-color;
+    text-shadow: 0 0 5px rgb(255, 255, 175);
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: -1px;
+
+    border-left: 5px solid white;
+    padding: 0 20px;
+}
+
 #footer {
-    padding: 10px;
+    padding: 7px 10px;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -232,7 +250,6 @@ body {
 
         label {
             margin-right: 10px;
-            text-shadow: 0 0 5px @text-color;
             display: inline-block;
         }
 
@@ -279,7 +296,7 @@ body {
         right: 15px;
         top: 0;
         width: 90px;
-        height: 60px;
+        height: 54px;
         z-index: 2;
         opacity: 0.8;
 
@@ -290,7 +307,7 @@ body {
         }
 
         .validated {
-            cursor: pointer;
+            cursor: url('../img/pointer_hand.png'), pointer;
         }
 
         #big-gear {
@@ -300,7 +317,7 @@ body {
 
         #small-gear {
             width: 35px;
-            left: 34px;
+            left: 33px;
         }
     }
 }
