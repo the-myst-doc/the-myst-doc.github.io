@@ -24,13 +24,16 @@ $(document).ready(() => {
     const body$ = $('body');
 
     // Load assets dynamically
-    $('#camera-body').attr('src', Camera);
-    $('#gears img').attr('src', Gear);
-    $('#zoom-btn').attr('src', ZoomBtn);
-    $('#zoom-btn-hover').attr('src', ZoomHover);
+    function loadAsset(el$, asset) {
+        el$.attr('src', asset);
+    }
+    loadAsset($('#camera-body'), Camera);
+    loadAsset($('#gears img'), Gear);
+    loadAsset($('#zoom-btn'), ZoomBtn);
+    loadAsset($('#zoom-btn-hover'), ZoomHover);
 
     const linkingSound$ = $('#linking-sound');
-    linkingSound$.find('source').attr('src', LinkingSound);
+    loadAsset(linkingSound$.find('source'), LinkingSound);
 
     const soundElement = linkingSound$.get(0);
     soundElement.load();
@@ -111,7 +114,7 @@ $(document).ready(() => {
             const emailText = $(e.target).val();
             const isValidEmail = emailText.match(/^[\w\.]+@\w+\.\w{3}$/g) || false;
             $('#big-gear, #small-gear')
-                .attr('src', isValidEmail ? GearGlow : Gear)
+                .attr('src', `${isValidEmail ? GearGlow : Gear}`)
                 .toggleClass('validated', isValidEmail);
         });
 

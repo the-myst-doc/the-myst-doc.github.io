@@ -4,8 +4,6 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const mode = 'production';
-
 function getPlugins(mode) {
     const plugins = [
         new webpack.ProvidePlugin({
@@ -13,7 +11,7 @@ function getPlugins(mode) {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src/index.html'),
-            filename: path.resolve(__dirname, `${mode === 'production' ? '' : 'dist/'}index.html`),
+            filename: path.resolve(__dirname, 'docs/index.html'),
         })
     ];
 
@@ -32,13 +30,13 @@ function getPlugins(mode) {
 module.exports = (env, argv) => {
     return {
         devServer: {
-            contentBase: path.resolve(__dirname, 'dist'),
+            contentBase: path.resolve(__dirname, 'docs'),
         },
         devtool: 'cheap-module-eval-source-map',
         entry: './src/index.js',
         output: {
             filename: 'bundle.js',
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(__dirname, 'docs'),
         },
         module: {
             rules: [
