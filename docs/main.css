@@ -178,7 +178,7 @@ body {
   font-size: 26px;
   font-family: 'Exo 2', sans-serif;
   color: white;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 #footer form:hover,
 #footer form:focus-within {
@@ -186,7 +186,7 @@ body {
 }
 #footer form #email {
   height: 40px;
-  width: 430px;
+  width: 465px;
   padding-left: 15px;
   font-size: 20px;
   font-family: 'Courier New', Courier, monospace;
