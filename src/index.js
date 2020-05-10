@@ -83,14 +83,14 @@ $(document).ready(() => {
 
         const subscribed$ = $('#subscribed');
         subscribed$.animate(
-            {opacity: 1, bottom: '66px'},
-            400,
+            {opacity: 1, right: '-10px'},
+            600,
             () => {
                 setTimeout(() => {
                     subscribed$.animate(
                         {opacity: 0},
                         800,
-                        () => subscribed$.css({bottom: '46px'})
+                        () => subscribed$.css({right: '20px'})
                     );
                 }, 1700);
             }
