@@ -11,7 +11,7 @@
     src: url('../fonts/ZapfinoExtraLT-Ligatures.otf');
 }
 
-@bg-color: #2e4264db;
+@bg-color: #2e4264d0;
 @text-color: white;
 
 body {
@@ -204,22 +204,25 @@ body {
 }
 
 #footer {
-    padding: 7px 10px;
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: @bg-color;
     z-index: 1000;
+
     margin: 0;
-    text-align: left;
+    padding: 8px 0;
+
+    background-color: @bg-color;
     box-shadow: 0 -1px 8px rgba(0, 0, 0, 0.5);
+
+    text-align: left;
     transform: translateY(-13px) translateZ(50px) scale(0.97);
 
     form {
         display: inline-block;
         position: relative;
 
-        margin-left: 5px;
+        margin-left: 20px;
         margin-bottom: 0;
 
         font-style: italic;
@@ -311,10 +314,9 @@ body {
 
     #social {
         position: absolute;
-        top: 50%;
+        top: 8px;
         right: 0;
-        transform: translateY(-50%);
-        padding-right: 30px;
+        margin-right: 20px;
 
         a {
             color: @text-color;
@@ -325,6 +327,37 @@ body {
 
             &:hover {
                 opacity: .9;
+            }
+        }
+    }
+
+    #copyright {
+        position: absolute;
+        top: -10px;
+        right: 20px;
+        transform: translateY(-100%);
+
+        margin: 4px 0;
+
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        letter-spacing: -1px;
+
+        color: #888;
+        text-shadow: 1px 1px 2px black;
+        opacity: .6;
+
+        span {
+            display: inline-block;
+
+            &:first-child {
+                text-align: right;
+                padding-right: 8px;
+                border-right: 1px solid #666;
+            }
+
+            div {
+                margin: 2px 0;
             }
         }
     }
@@ -350,7 +383,7 @@ body {
         transform-origin: 50% 15%;
     }
 
-    #lower-third, #social, #gears, #footer form label {
+    #lower-third, #social, #gears, #copyright {
         display: none;
     }
 
