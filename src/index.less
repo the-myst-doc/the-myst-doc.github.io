@@ -11,7 +11,7 @@
     src: url('../fonts/ZapfinoExtraLT-Ligatures.otf');
 }
 
-@bg-color: #483f34b5;
+@bg-color: #2e4264db;
 @text-color: white;
 
 body {
@@ -33,32 +33,10 @@ body {
     perspective: 1600px;
 }
 
-#social {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    padding: 10px;
-    width: 200px;
-    text-align: left;
-
-    a {
-        color: @text-color;
-        text-decoration: none;
-        margin: 0 -1px;
-        opacity: 0.55;
-        font-size: 20px;
-
-        &:hover {
-            opacity: .9;
-        }
-    }
-}
-
 #video-camera {
     position: absolute;
     right: -30px;
-    bottom: -250px;
+    bottom: -220px;
     transform: scale(1.1);
 
     #camera-body {
@@ -214,16 +192,14 @@ body {
 
     position: absolute;
     z-index: 2;
-    left: -100px;
-    top: 57%;
+    left: -40px;
+    bottom: 64px;
 
     color: @text-color;
     text-shadow: 0 0 5px rgb(255, 255, 175);
-    font-size: 40px;
+    font-size: 24px;
     font-family: 'Courier New', Courier, monospace;
-    letter-spacing: -1px;
 
-    border-left: 5px solid white;
     padding: 0 20px;
 }
 
@@ -235,34 +211,73 @@ body {
     background-color: @bg-color;
     z-index: 1000;
     margin: 0;
-    text-align: right;
+    text-align: left;
     box-shadow: 0 -1px 8px rgba(0, 0, 0, 0.5);
     transform: translateY(-13px) translateZ(50px) scale(0.97);
 
     form {
-        margin-right: 25px;
+        display: inline-block;
+        position: relative;
+
+        margin-left: 5px;
         margin-bottom: 0;
+
         font-style: italic;
         font-size: 26px;
         font-family: 'Exo 2', sans-serif;
-        color: @text-color;
-        display: inline-block;
 
-        label {
-            margin-right: 10px;
-            display: inline-block;
+        color: @text-color;
+        opacity: 0.8;
+
+        &:hover, &:focus-within {
+            opacity: 1;
         }
 
         #email {
             height: 40px;
             width: 430px;
 
-            padding-left: 10px;
+            padding-left: 15px;
+
             font-size: 20px;
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Courier New', Courier, monospace;
+            font-style: italic;
+            letter-spacing: -1px;
 
             border: none;
             border-radius: 5px;
+        }
+
+        #gears {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+
+            width: 75px;
+            height: 54px;
+            z-index: 2;
+            opacity: 0.8;
+
+            img {
+                position: absolute;
+                top: 50%;
+                transition: transform .1s;
+            }
+
+            .validated {
+                cursor: url('../img/pointer_hand.png'), pointer;
+            }
+
+            #big-gear {
+                width: 42px;
+                left: 0;
+            }
+
+            #small-gear {
+                width: 35px;
+                left: 33px;
+            }
         }
     }
 
@@ -291,33 +306,23 @@ body {
         opacity: 0;
     }
 
-    #gears {
+    #social {
         position: absolute;
-        right: 15px;
-        top: 0;
-        width: 90px;
-        height: 54px;
-        z-index: 2;
-        opacity: 0.8;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        padding-right: 30px;
 
-        img {
-            position: absolute;
-            top: 50%;
-            transition: transform .1s;
-        }
+        a {
+            color: @text-color;
+            text-decoration: none;
+            margin: 0 -1px;
+            opacity: 0.55;
+            font-size: 20px;
 
-        .validated {
-            cursor: url('../img/pointer_hand.png'), pointer;
-        }
-
-        #big-gear {
-            width: 42px;
-            left: 0;
-        }
-
-        #small-gear {
-            width: 35px;
-            left: 33px;
+            &:hover {
+                opacity: .9;
+            }
         }
     }
 }
