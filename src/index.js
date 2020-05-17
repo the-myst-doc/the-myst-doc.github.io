@@ -8,12 +8,13 @@ import ZoomHover from '../img/zoom_btn_hover.png';
 import LinkingSound from '../audio/linking.wav';
 
 let rotation = 0;
-let clicked = false;
+let isDragging = false;
 let mousePosX, mousePosY;
 let bodyWidth, bodyHeight;
 
-const VIEWSCREEN_SCALE = .045;
-const BODY_SCALE = .03;
+const CAMERA_BACKGROUND_RATIO = 2;
+const BACKGROUND_MOUSEMOVE = .005;
+const BACKGROUND_DRAG = .1;
 
 const ZOOM_STOPS = [200, 350, 650];
 let currentZoom = 0;
@@ -47,6 +48,7 @@ $(document).ready(() => {
 
     function shiftView(deltaX, deltaY) {
         function shiftViewParam(param, delta, scale) {
+            scale *= ZOOM_STOPS[0] / ZOOM_STOPS[currentZoom];
             const updatedParam = param - (delta * scale);
             return Math.min(Math.max(0, updatedParam), 100); 
         }
@@ -62,18 +64,21 @@ $(document).ready(() => {
             return (2 * max * (amount / 100)) - max;
         }
 
-        const {posX: viewX, posY: viewY} = getBackgroundPosition(viewscreen$);
+        const backgroundScale = isDragging ? BACKGROUND_DRAG : BACKGROUND_MOUSEMOVE;
+        const cameraScale = backgroundScale * CAMERA_BACKGROUND_RATIO;
+
+        const {posX: camX, posY: camY} = getBackgroundPosition(viewscreen$);
         viewscreen$.css({
-            'background-position-x': `${shiftViewParam(viewX, deltaX, VIEWSCREEN_SCALE)}%`,
-            'background-position-y': `${shiftViewParam(viewY, deltaY, VIEWSCREEN_SCALE)}%`
+            'background-position-x': `${shiftViewParam(camX, deltaX, cameraScale)}%`,
+            'background-position-y': `${shiftViewParam(camY, deltaY, cameraScale)}%`
         });
 
-        camera$.css('transform', `rotateY(${-getRotation(viewX, 10)}deg) rotateX(${getRotation(viewY, 17)}deg) scale(1.1)`);
+        camera$.css('transform', `rotateY(${-getRotation(camX, 10)}deg) rotateX(${getRotation(camY, 17)}deg) scale(1.1)`);
 
         const {posX: bodyX, posY: bodyY} = getBackgroundPosition(body$);
         body$.css({
-            'background-position-x': `${shiftViewParam(bodyX, deltaX, BODY_SCALE)}%`,
-            'background-position-y': `${shiftViewParam(bodyY, deltaY, BODY_SCALE)}%`
+            'background-position-x': `${shiftViewParam(bodyX, deltaX, backgroundScale)}%`,
+            'background-position-y': `${shiftViewParam(bodyY, deltaY, backgroundScale)}%`
         });
     }
 
@@ -96,10 +101,6 @@ $(document).ready(() => {
             }
         );
     }
-
-    viewscreen$.click(() => {
-        soundElement.play();
-    });
 
     $('#email')
         .keydown((e) => {
@@ -125,19 +126,23 @@ $(document).ready(() => {
 
     $(document).on('click', '#gears .validated', () => submitForm());
 
-    $('body').mousemove((e) => {
-        if (window.matchMedia('(max-device-width: 850px)').matches) {
-            return;
-        }
-
-        shiftView(
-            e.clientX - mousePosX,
-            e.clientY - mousePosY,
-        );
-
-        mousePosX = e.clientX;
-        mousePosY = e.clientY;
+    viewscreen$.mousedown(({clientX, clientY}) => {
+        isDragging = true;
+        mousePosX = clientX;
+        mousePosY = clientY;
     });
+
+    $('body')
+        .mouseup(() => isDragging = false)
+        .mousemove(({clientX, clientY}) => {
+            shiftView(
+                clientX - mousePosX,
+                clientY - mousePosY,
+            );
+
+            mousePosX = clientX;
+            mousePosY = clientY;
+        });
 
     updateGears();
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1500), 500);
