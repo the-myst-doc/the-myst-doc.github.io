@@ -13,7 +13,7 @@ let mousePosX, mousePosY;
 let bodyWidth, bodyHeight;
 
 const CAMERA_BACKGROUND_RATIO = 2;
-const BACKGROUND_MOUSEMOVE = .005;
+const BACKGROUND_MOUSEMOVE = .004;
 const BACKGROUND_DRAG = .1;
 
 const ZOOM_STOPS = [200, 350, 650];
@@ -126,12 +126,7 @@ $(document).ready(() => {
 
     $(document).on('click', '#gears .validated', () => submitForm());
 
-    viewscreen$.mousedown(({clientX, clientY}) => {
-        isDragging = true;
-        mousePosX = clientX;
-        mousePosY = clientY;
-    });
-
+    viewscreen$.mousedown(() => isDragging = true);
     $('body')
         .mouseup(() => isDragging = false)
         .mousemove(({clientX, clientY}) => {
