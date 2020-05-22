@@ -51,9 +51,14 @@ module.exports = (env, argv) => {
                     ],
                 },
                 {
-                    test: /\.(ttf|otf|png|jpe?g|wav)$/,
+                    test: /\.(ttf|otf|png|jpe?g|wav|mov)$/,
                     use: [
-                        'file-loader'
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: '[name].[ext]'
+                            }
+                        }
                     ]
                 },
             ]

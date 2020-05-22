@@ -6,6 +6,7 @@ import GearGlow from '../img/gear_glow.png';
 import ZoomBtn from '../img/zoom_btn.png';
 import ZoomHover from '../img/zoom_btn_hover.png';
 import LinkingSound from '../audio/linking.wav';
+import LinkingPanel from '../video/red_panel.mov';
 
 let rotation = 0;
 let isDragging = false;
@@ -21,8 +22,10 @@ let currentZoom = 0;
 
 $(document).ready(() => {
     const camera$ = $('#video-camera');
-    const viewscreen$ = $('#viewscreen');
+    const viewscreen$ = $('#viewer');
     const body$ = $('body');
+    const linkingTitle$ = $('#linking-title');
+    const linkingPanel$ = $('#linking-panel');
 
     // Load assets dynamically
     function loadAsset(el$, asset) {
@@ -32,6 +35,7 @@ $(document).ready(() => {
     loadAsset($('#gears img'), Gear);
     loadAsset($('#zoom-btn'), ZoomBtn);
     loadAsset($('#zoom-btn-hover'), ZoomHover);
+    loadAsset($('#linking-panel source'), LinkingPanel);
 
     const linkingSound$ = $('#linking-sound');
     loadAsset(linkingSound$.find('source'), LinkingSound);
@@ -40,10 +44,40 @@ $(document).ready(() => {
     soundElement.load();
     soundElement.volume = 0.1;
 
+    const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
+
     function updateGears() {
         rotation += 15;
         $('#big-gear').css('transform', `translateY(-50%) rotate(${rotation}deg)`);
         $('#small-gear').css('transform', `translateY(-50%) rotate(${20-rotation}deg)`);
+    }
+
+    function shakeLinkingPanel() {
+        const SHAKE_MAGNITUDE = 2.5;
+        const SHAKE_CENTER = 50;
+        const SHAKE_INTERVAL = 300;
+
+        linkingTitle$.css({
+            top: `${randFloat(SHAKE_CENTER, SHAKE_MAGNITUDE)}%`,
+            left: `${randFloat(SHAKE_CENTER, SHAKE_MAGNITUDE)}%`,
+            'font-size': `${randFloat(7.5, 1)}vh`,
+            'letter-spacing': `${randFloat(0, 3)}px`
+        });
+
+        setTimeout(shakeLinkingPanel, SHAKE_INTERVAL);
+    }
+
+    function showLinkingPanel() {
+        if (linkingTitle$.css('display') !== 'none') {
+            return;
+        }
+
+        const FADE_IN_DURATION = 1600;
+        linkingTitle$.add(linkingPanel$).css({display: 'block'});
+        linkingPanel$.animate({opacity: 1}, FADE_IN_DURATION);
+        setTimeout(() => linkingTitle$.animate({opacity: 0.7}, FADE_IN_DURATION), 500);
+
+        shakeLinkingPanel();
     }
 
     function shiftView(deltaX, deltaY) {
@@ -97,6 +131,7 @@ $(document).ready(() => {
                         800,
                         () => subscribed$.css({right: '20px'})
                     );
+                    showLinkingPanel();
                 }, 1700);
             }
         );
