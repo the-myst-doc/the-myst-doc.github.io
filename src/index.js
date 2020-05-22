@@ -9,7 +9,7 @@ import LinkingSound from '../audio/linking.wav';
 import LinkingPanel from '../video/red_panel.mov';
 
 let rotation = 0;
-let isDragging = false;
+let isDragging = false, isValidEmail = false;;
 let mousePosX, mousePosY;
 let bodyWidth, bodyHeight;
 
@@ -26,6 +26,7 @@ $(document).ready(() => {
     const body$ = $('body');
     const linkingTitle$ = $('#linking-title');
     const linkingPanel$ = $('#linking-panel');
+    const zoomBtn$ = $('#zoom');
 
     // Load assets dynamically
     function loadAsset(el$, asset) {
@@ -60,8 +61,8 @@ $(document).ready(() => {
         linkingTitle$.css({
             top: `${randFloat(SHAKE_CENTER, SHAKE_MAGNITUDE)}%`,
             left: `${randFloat(SHAKE_CENTER, SHAKE_MAGNITUDE)}%`,
-            'font-size': `${randFloat(7.5, 1)}vh`,
-            'letter-spacing': `${randFloat(0, 3)}px`
+            'font-size': `${randFloat(7, 1.3)}vh`,
+            'letter-spacing': `${randFloat(0, 4)}px`
         });
 
         setTimeout(shakeLinkingPanel, SHAKE_INTERVAL);
@@ -76,8 +77,10 @@ $(document).ready(() => {
 
         const FADE_IN_DURATION = 1600;
         linkingTitle$.add(linkingPanel$).css({display: 'block'});
-        linkingPanel$.animate({opacity: 1}, FADE_IN_DURATION);
+        linkingPanel$.animate({opacity: 1}, FADE_IN_DURATION).get(0).play();
         setTimeout(() => linkingTitle$.animate({opacity: 0.7}, FADE_IN_DURATION), 500);
+
+        zoomBtn$.hide();
 
         shakeLinkingPanel();
     }
@@ -109,7 +112,7 @@ $(document).ready(() => {
             'background-position-y': `${shiftViewParam(camY, deltaY, cameraScale)}%`
         });
 
-        camera$.css('transform', `rotateY(${-getRotation(camX, 10)}deg) rotateX(${getRotation(camY, 17)}deg) scale(1.1)`);
+        camera$.css('transform', `rotateY(${-getRotation(camX, 5)}deg) rotateX(${getRotation(camY, 12)}deg) scale(1.1)`);
 
         const {posX: bodyX, posY: bodyY} = getBackgroundPosition(body$);
         body$.css({
@@ -119,6 +122,10 @@ $(document).ready(() => {
     }
 
     function submitForm() {
+        if (!isValidEmail) {
+            return;
+        }
+
         $('#sign-up').submit();
         $('#email').val('').trigger('input');
 
@@ -150,13 +157,13 @@ $(document).ready(() => {
         })
         .on('input', (e) => {
             const emailText = $(e.target).val();
-            const isValidEmail = emailText.match(/^[\w\.]+@\w+\.\w{3}$/g) || false;
+            isValidEmail = emailText.match(/^[\w\.]+@\w+\.\w{3}$/g) || false;
             $('#big-gear, #small-gear')
                 .attr('src', `${isValidEmail ? GearGlow : Gear}`)
                 .toggleClass('validated', isValidEmail);
         });
 
-    $('#zoom').click(() => {
+    zoomBtn$.click(() => {
         currentZoom = (currentZoom + 1) % ZOOM_STOPS.length;
         viewscreen$.css('background-size', `${ZOOM_STOPS[currentZoom]}% auto`);
     });

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> Myst Documentary </title>
+        <title> The Myst Documentary </title>
         <meta name="robots" content="noindex">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Exo+2:300,600&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
                 <div class="title-text" aria-label="the"> <span class="ligature">t</span>e </div>
                 <div class="myst-logo">
                     <div class="logo-text"> MYST </div>
-                    <div class="logo-shadow" aria-hidden="true"> MYST </div>
+                    <div class="logo-shadow disable-selection" aria-hidden="true"> MYST </div>
                 </div>
                 <div class="title-text"> documentary </div>
             </h1>
@@ -24,7 +24,7 @@
             about people who make <strong>worlds</strong>
         </div>
 
-        <div id="video-camera">
+        <div id="video-camera" class="disable-selection">
             <img id="camera-body">
             <div id="zoom">
                 <img id="zoom-btn-hover">
@@ -33,15 +33,16 @@
             <div id="camera-screen">
                 <div id="vignette">
                     <div id="linking-title">
-                        Welcome, old friend ...
+                        Stay tuned, old friend ...
                     </div>
                 </div>
-                <video id="linking-panel" muted loop autoplay>
+                <video id="linking-panel" muted loop>
                     <source type="video/mp4" src="red_panel.mov">
                 </video>
                 <div id="viewer">
                     <div id="recording"></div>
                 </div>
+                <div id="backing"></div>
             </div>
         </div>
 
