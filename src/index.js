@@ -42,7 +42,7 @@ $(document).ready(() => {
 
     const soundElement = linkingSound$.get(0);
     soundElement.load();
-    soundElement.volume = 0.1;
+    soundElement.volume = 0.08;
 
     const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
 
@@ -71,6 +71,8 @@ $(document).ready(() => {
         if (linkingTitle$.css('display') !== 'none') {
             return;
         }
+
+        soundElement.play();
 
         const FADE_IN_DURATION = 1600;
         linkingTitle$.add(linkingPanel$).css({display: 'block'});
@@ -132,7 +134,7 @@ $(document).ready(() => {
                         () => subscribed$.css({right: '20px'})
                     );
                     showLinkingPanel();
-                }, 1700);
+                }, 1200);
             }
         );
     }

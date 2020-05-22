@@ -235,7 +235,6 @@ body {
   right: 0;
   transform: translateY(-50%);
   width: 75px;
-  height: 54px;
   z-index: 2;
   opacity: 0.8;
 }
