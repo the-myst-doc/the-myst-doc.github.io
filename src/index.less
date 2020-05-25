@@ -12,6 +12,7 @@
 }
 
 @bg-color: #2e4264;
+@pop-up-color: rgb(0, 217, 255);
 @text-color: white;
 
 body {
@@ -347,7 +348,7 @@ body {
 
     #subscribed {
         color: @text-color;
-        background-color: rgba(0, 217, 255, 0.6);
+        background-color: fade(@pop-up-color, 60%);
 
         border-radius: 10px;
         border: 2px solid rgba(0, 220, 220);
@@ -455,7 +456,7 @@ body {
         box-shadow: 0 0 10px black;
     }
 
-    #lower-third, #content .social, #gears, #content .copyright, #subscribed {
+    #lower-third, #content .social, #gears, #content .copyright {
         display: none;
     }
 
@@ -473,6 +474,18 @@ body {
             #email {
                 width: 90%;
             }
+        }
+
+        #subscribed {
+            left: 5%;
+            right: 5%;
+            top: 10px;
+            transform: translateY(-100%);
+
+            z-index: -1;
+
+            background-color: fade(@pop-up-color, 72%);
+            text-shadow: 1px 1px 2px black;
         }
     }
 
@@ -556,6 +569,7 @@ and (orientation: landscape) {
     #mobile-footer {
         .copyright {
             padding: 8px 10px;
+            -webkit-text-size-adjust: 100%;
             span.spacer {
                 display: inline;
             }

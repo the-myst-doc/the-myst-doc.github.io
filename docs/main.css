@@ -359,8 +359,7 @@ body {
   #lower-third,
   #content .social,
   #gears,
-  #content .copyright,
-  #subscribed {
+  #content .copyright {
     display: none;
   }
   #footer {
@@ -376,6 +375,15 @@ body {
   }
   #footer form #email {
     width: 90%;
+  }
+  #footer #subscribed {
+    left: 5%;
+    right: 5%;
+    top: 10px;
+    transform: translateY(-100%);
+    z-index: -1;
+    background-color: rgba(0, 217, 255, 0.72);
+    text-shadow: 1px 1px 2px black;
   }
   #mobile-footer {
     display: block;
@@ -437,6 +445,7 @@ body {
   }
   #mobile-footer .copyright {
     padding: 8px 10px;
+    -webkit-text-size-adjust: 100%;
   }
   #mobile-footer .copyright span.spacer {
     display: inline;

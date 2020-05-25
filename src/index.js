@@ -130,16 +130,21 @@ $(document).ready(() => {
         $('#sign-up').submit();
         $('#email').val('').trigger('input');
 
+        const animationDirection = isMobile() ? 'top' : 'right';
+        const animateTo = {opacity: 1}, animateFrom = {};
+        animateTo[animationDirection] = '-10px';
+        animateFrom[animationDirection] = '20px';
+
         const subscribed$ = $('#subscribed');
         subscribed$.animate(
-            {opacity: 1, right: '-10px'},
+            animateTo,
             600,
             () => {
                 setTimeout(() => {
                     subscribed$.animate(
                         {opacity: 0},
                         800,
-                        () => subscribed$.css({right: '20px'})
+                        () => subscribed$.css(animateFrom)
                     );
                     showLinkingPanel();
                 }, 1200);
