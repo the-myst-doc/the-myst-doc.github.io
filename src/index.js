@@ -150,7 +150,7 @@ $(document).ready(() => {
         }
 
         $('#sign-up').submit();
-        $('#email').val('').trigger('input');
+        $('#email').val('').trigger('input').blur();
 
         const animateTo = {opacity: 1}, animateFrom = {};
         if (isMobile()) {

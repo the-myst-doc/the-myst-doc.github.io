@@ -465,7 +465,6 @@ body {
 
     #content {
         background-size: auto 100%;
-        perspective: 2px;
         height: 92vh;
         min-height: 0;
         min-width: 0;
@@ -542,8 +541,7 @@ body {
 
 // Mobile portrait
 @media only screen
-and (max-device-width: 850px)
-and (orientation: portrait) {
+and (max-device-width: 425px) {
     #title {
         top: 0;
         left:50%;
@@ -575,7 +573,7 @@ and (orientation: portrait) {
 // Mobile landscape
 @media only screen
 and (max-device-width: 850px)
-and (orientation: landscape) {
+and (min-device-width: 425px) {
     #content {
         background-size: 100% auto;
 
