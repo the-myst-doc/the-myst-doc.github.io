@@ -18,7 +18,12 @@ let bodyWidth, bodyHeight;
 const CAMERA_BACKGROUND_RATIO = 2;
 const BACKGROUND_MOUSEMOVE = .004;
 const BACKGROUND_DRAG = .1;
+
 const SCROLL_AMOUNT = 12;
+
+const ZOOM_AMOUNT = 1.5;
+const MAX_ZOOM_OFFSET = 600;
+const MIN_ZOOM_OFFSET = -50;
 
 const ZOOM_STOPS = [200, 350, 650];
 let currentZoom = 0;
@@ -254,7 +259,7 @@ $(document).ready(() => {
                 const newDist = getDist(e);
                 if (!newDist) return stopPinch();
 
-                zoomOffset = Math.min(Math.max(zoomOffset + newDist - pinchDist, -50), 500);
+                zoomOffset = Math.min(Math.max(zoomOffset + (newDist - pinchDist) * ZOOM_AMOUNT, MIN_ZOOM_OFFSET), MAX_ZOOM_OFFSET);
                 pinchDist = newDist;
                 return setZoom();
             }
