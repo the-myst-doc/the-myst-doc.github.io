@@ -11,18 +11,24 @@
   src: url(ZapfinoExtraLT-Ligatures.otf);
 }
 body {
+  background-color: #161f30;
+  margin: 0;
+}
+#content {
   background-image: url(myst_dock_blurred.jpg);
   background-size: 150% auto;
   background-position: 60% 20%;
   background-repeat: no-repeat;
   background-color: #2e4264;
   box-shadow: inset 0 0 130px rgba(0, 0, 0, 0.5);
-  margin: 0;
   height: 100vh;
   overflow: hidden;
   position: relative;
+  max-width: 1800px;
   min-width: 1090px;
   min-height: 700px;
+  margin-left: auto;
+  margin-right: auto;
   perspective: 1600px;
 }
 .disable-selection {
@@ -43,10 +49,10 @@ body {
 }
 #video-camera #camera-screen > * {
   position: absolute;
-  top: 21vh;
-  left: 11.6vh;
-  width: 51.6vh;
-  height: 35vh;
+  top: 20.8%;
+  left: 10.4%;
+  width: 46.26%;
+  height: 35.25%;
 }
 #video-camera #vignette {
   pointer-events: none;
@@ -98,13 +104,13 @@ body {
 #video-camera #recording {
   background-color: #b40000;
   opacity: 0.75;
-  width: 2.75vh;
-  height: 2.75vh;
-  border-radius: 1.5vh;
+  width: 5.5%;
+  height: 8.3%;
+  border-radius: 100px;
   position: absolute;
-  top: 1vh;
-  left: 1.3vh;
-  z-index: 2;
+  top: 2.75%;
+  left: 2.75%;
+  z-index: 4;
   animation: blink 1.2s step-start infinite;
   display: none;
 }
@@ -113,9 +119,9 @@ body {
 }
 #video-camera #zoom img {
   position: absolute;
-  left: 80.9vh;
-  top: 25.5vh;
-  width: 9vh;
+  left: 72.45%;
+  top: 25.5%;
+  width: 8%;
 }
 #video-camera #zoom #zoom-btn {
   filter: brightness(1.4) contrast(1.2);
@@ -287,60 +293,69 @@ body {
   line-height: 37px;
   opacity: 0;
 }
-#footer #social {
+#footer .social {
   position: absolute;
   top: 8px;
   right: 0;
   width: 170px;
 }
-#footer #social a {
-  color: white;
-  text-decoration: none;
+#footer .social a {
+  font-size: 20px;
   margin: 0 -1px;
   opacity: 0.55;
-  font-size: 20px;
 }
-#footer #social a:hover {
+#footer .social a:hover {
   opacity: 0.9;
 }
-#footer #copyright {
+#footer .copyright {
   position: absolute;
   top: -10px;
   right: 20px;
   transform: translateY(-100%);
   margin: 4px 0;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  letter-spacing: -1px;
-  color: #999;
   text-shadow: 1px 1px 2px black;
   opacity: 0.75;
 }
-#footer #copyright span {
+#footer .copyright span {
   display: inline-block;
 }
-#footer #copyright span:first-child {
+#footer .copyright span:first-child {
   text-align: right;
   padding-right: 8px;
   border-right: 1px solid #666;
 }
-#footer #copyright span div {
+#footer .copyright span div {
   margin: 2px 0;
 }
+.copyright {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  letter-spacing: -1px;
+  color: #999;
+}
+.social a {
+  color: white;
+  text-decoration: none;
+}
+#mobile-footer {
+  display: none;
+}
 @media only screen and (max-width: 1090px) {
-  body {
+  #content {
     background-size: auto 100%;
   }
 }
 @media only screen and (max-device-width: 850px) {
   body {
-    background-color: #333;
+    overflow-y: scroll;
+  }
+  #content {
     background-size: auto 100%;
     perspective: none;
-    height: 100vh;
+    height: 95vh;
     min-height: 0;
     min-width: 0;
-    overflow-y: scroll;
+    box-shadow: 0 0 10px black;
   }
   #title {
     top: 0;
@@ -349,9 +364,9 @@ body {
     transform-origin: 50% 15%;
   }
   #lower-third,
-  #social,
+  #content .social,
   #gears,
-  #copyright,
+  #content .copyright,
   #subscribed {
     display: none;
   }
@@ -359,7 +374,6 @@ body {
     right: -310px;
     bottom: -120px;
     transform: scale(0.85);
-    clip: rect(0, 200vh, 87vh, 0);
   }
   #footer {
     text-align: center;
@@ -374,6 +388,41 @@ body {
   }
   #footer form #email {
     width: 90%;
+  }
+  #mobile-footer {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  #mobile-footer .copyright {
+    display: inline-block;
+    padding: 8px 6px;
+    opacity: 0.55;
+  }
+  #mobile-footer .copyright span {
+    white-space: nowrap;
+  }
+  #mobile-footer .copyright span.spacer {
+    display: none;
+  }
+  #mobile-footer .social {
+    padding-top: 10px;
+  }
+  #mobile-footer .social a {
+    margin: 0 6px;
+    font-size: 18px;
+    opacity: 0.65;
+  }
+}
+@media only screen and (max-device-width: 850px) and (orientation: landscape) {
+  #content {
+    background-size: 100% auto;
+  }
+  #mobile-footer .copyright {
+    padding: 8px 10px;
+  }
+  #mobile-footer .copyright span.spacer {
+    display: inline;
   }
 }
 

@@ -20,6 +20,9 @@ const BACKGROUND_DRAG = .1;
 const ZOOM_STOPS = [200, 350, 650];
 let currentZoom = 0;
 
+const isMobile = () => Boolean(window.matchMedia("only screen and (max-device-width: 850px)").matches);
+const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
+
 $(document).ready(() => {
     const camera$ = $('#video-camera');
     const viewscreen$ = $('#viewer');
@@ -44,8 +47,6 @@ $(document).ready(() => {
     const soundElement = linkingSound$.get(0);
     soundElement.load();
     soundElement.volume = 0.08;
-
-    const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
 
     function updateGears() {
         rotation += 15;
@@ -174,6 +175,10 @@ $(document).ready(() => {
     $('body')
         .mouseup(() => isDragging = false)
         .mousemove(({clientX, clientY}) => {
+            if (isMobile() && !isDragging) {
+                return;
+            }
+
             shiftView(
                 clientX - mousePosX,
                 clientY - mousePosY,
@@ -184,5 +189,6 @@ $(document).ready(() => {
         });
 
     updateGears();
+    $('.social').clone().prependTo('#mobile-footer');
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1500), 500);
 });

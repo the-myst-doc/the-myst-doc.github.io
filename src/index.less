@@ -15,6 +15,11 @@
 @text-color: white;
 
 body {
+    background-color: darken(@bg-color, 15%);
+    margin: 0;
+}
+
+#content {
     background-image: url('../img/myst_dock_blurred.jpg');
     background-size: 150% auto;
     background-position: 60% 20%;
@@ -23,13 +28,16 @@ body {
 
     box-shadow: inset 0 0 130px rgba(0, 0, 0, 0.5);
 
-    margin: 0;
     height: 100vh;
     overflow: hidden;
 
     position: relative;
+    max-width: 1800px;
     min-width: 1090px;
     min-height: 700px;
+
+    margin-left: auto;
+    margin-right: auto;
 
     perspective: 1600px;
 }
@@ -54,10 +62,10 @@ body {
 
     #camera-screen > * {
         position: absolute;
-        top: 21vh;
-        left: 11.6vh;
-        width: 51.6vh;
-        height: 35vh;
+        top: 20.8%;
+        left: 10.4%;
+        width: 46.26%;
+        height: 35.25%;
     }
 
     #vignette {
@@ -122,14 +130,14 @@ body {
         background-color: rgb(180, 0, 0);
         opacity: .75;
 
-        width: 2.75vh;
-        height: 2.75vh;
-        border-radius: 1.5vh;
+        width: 5.5%;
+        height: 8.3%;
+        border-radius: 100px;
 
         position: absolute;
-        top: 1vh;
-        left: 1.3vh;
-        z-index: 2;
+        top: 2.75%;
+        left: 2.75%;
+        z-index: 4;
 
         animation: blink 1.2s step-start infinite;
 
@@ -141,9 +149,9 @@ body {
 
         img {
             position: absolute;
-            left: 80.9vh;
-            top: 25.5vh;
-            width: 9vh;
+            left: 72.45%;
+            top: 25.5%;
+            width: 8%;
         }
 
         #zoom-btn {
@@ -365,26 +373,24 @@ body {
         opacity: 0;
     }
 
-    #social {
+    .social {
         position: absolute;
         top: 8px;
         right: 0;
         width: 170px;
 
         a {
-            color: @text-color;
-            text-decoration: none;
-            margin: 0 -1px;
-            opacity: 0.55;
             font-size: 20px;
+            margin: 0 -1px;
 
+            opacity: 0.55;
             &:hover {
                 opacity: .9;
             }
         }
     }
 
-    #copyright {
+    .copyright {
         position: absolute;
         top: -10px;
         right: 20px;
@@ -392,11 +398,6 @@ body {
 
         margin: 4px 0;
 
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 14px;
-        letter-spacing: -1px;
-
-        color: #999;
         text-shadow: 1px 1px 2px black;
         opacity: .75;
 
@@ -416,21 +417,43 @@ body {
     }
 }
 
+.copyright {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    letter-spacing: -1px;
+
+    color: #999;
+}
+
+.social a {
+    color: @text-color;
+    text-decoration: none;
+}
+
+#mobile-footer {
+    display: none;
+}
+
+// Narrow width screen
 @media only screen and (max-width: 1090px) {
-    body {
+    #content {
         background-size: auto 100%;
     }
 }
 
+// All mobile
 @media only screen and (max-device-width: 850px) {
     body {
-        background-color: #333;
+        overflow-y: scroll;
+    }
+
+    #content {
         background-size: auto 100%;
         perspective: none;
-        height: 100vh;
+        height: 95vh;
         min-height: 0;
         min-width: 0;
-        overflow-y: scroll;
+        box-shadow: 0 0 10px black;
     }
 
     #title {
@@ -440,7 +463,7 @@ body {
         transform-origin: 50% 15%;
     }
 
-    #lower-third, #social, #gears, #copyright, #subscribed {
+    #lower-third, #content .social, #gears, #content .copyright, #subscribed {
         display: none;
     }
 
@@ -448,7 +471,6 @@ body {
         right: -310px;
         bottom: -120px;
         transform: scale(0.85);
-        clip: rect(0, 200vh, 87vh, 0);
     }
 
     #footer {
@@ -464,6 +486,53 @@ body {
 
             #email {
                 width: 90%;
+            }
+        }
+    }
+
+    #mobile-footer {
+        display: block;
+        width: 100%;
+        text-align: center;
+
+        .copyright {
+            display: inline-block;
+            padding: 8px 6px;
+            opacity: 0.55;
+
+            span {
+                white-space: nowrap;
+                &.spacer {
+                    display: none;
+                }
+            }
+        }
+
+        .social {
+            padding-top: 10px;
+
+            a {
+                margin: 0 6px;
+                font-size: 18px;
+                opacity: 0.65;
+            }
+        }
+    }
+}
+
+// Mobile landscape
+@media only screen
+and (max-device-width: 850px)
+and (orientation: landscape) {
+    #content {
+        background-size: 100% auto;
+    }
+
+    #mobile-footer {
+        .copyright {
+            padding: 8px 10px;
+            span.spacer {
+                display: inline;
             }
         }
     }

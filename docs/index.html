@@ -8,81 +8,92 @@
         <script defer="" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link href="main.css" rel="stylesheet"></head>
     <body>
-        <div id="title">
-            <h1> 
-                <div class="title-text" aria-label="the"> <span class="ligature">t</span>e </div>
-                <div class="myst-logo">
-                    <div class="logo-text"> MYST </div>
-                    <div class="logo-shadow disable-selection" aria-hidden="true"> MYST </div>
-                </div>
-                <div class="title-text"> documentary </div>
-            </h1>
-        </div>
-
-        <div id="lower-third">
-            A <strong>film</strong> in the making, <br>
-            about people who make <strong>worlds</strong>
-        </div>
-
-        <div id="video-camera" class="disable-selection">
-            <img id="camera-body">
-            <div id="zoom">
-                <img id="zoom-btn-hover">
-                <img id="zoom-btn">
-            </div>
-            <div id="camera-screen">
-                <div id="vignette">
-                    <div id="linking-title">
-                        Stay tuned, old friend ...
+        <div id="content">
+            <div id="title">
+                <h1>
+                    <div class="title-text" aria-label="the"> <span class="ligature">t</span>e </div>
+                    <div class="myst-logo">
+                        <div class="logo-text"> MYST </div>
+                        <div class="logo-shadow disable-selection" aria-hidden="true"> MYST </div>
                     </div>
+                    <div class="title-text"> documentary </div>
+                </h1>
+            </div>
+
+            <div id="lower-third">
+                A <strong>film</strong> in the making, <br>
+                about people who make <strong>worlds</strong>
+            </div>
+
+            <div id="video-camera" class="disable-selection">
+                <img id="camera-body">
+                <div id="zoom">
+                    <img id="zoom-btn-hover">
+                    <img id="zoom-btn">
                 </div>
-                <video id="linking-panel" muted loop>
-                    <source type="video/mp4" src="red_panel.mov">
-                </video>
-                <div id="viewer">
-                    <div id="recording"></div>
+                <div id="camera-screen">
+                    <div id="vignette">
+                        <div id="linking-title">
+                            Stay tuned, old friend ...
+                        </div>
+                    </div>
+                    <video id="linking-panel" muted loop>
+                        <source type="video/mp4" src="red_panel.mov">
+                    </video>
+                    <div id="viewer">
+                        <div id="recording"></div>
+                    </div>
+                    <div id="backing"></div>
                 </div>
-                <div id="backing"></div>
+            </div>
+
+            <div id="footer">
+                <div class="social">
+                    <a href="#" target="_blank" hidden>
+                        <i class="fab fa-kickstarter fa-2x fa-fw"></i>
+                    </a>
+                    <a href="https://twitter.com/TheMystDoc/" target="_blank">
+                        <i class="fab fa-twitter fa-2x fa-fw"></i>
+                    </a>
+                    <a href="https://www.instagram.com/TheMystDoc/" target="_blank">
+                        <i class="fab fa-instagram fa-2x fa-fw"></i>
+                    </a>
+                    <a href="https://www.facebook.com/theMYSTdoc/" target="_blank">
+                        <i class="fab fa-facebook-square fa-2x fa-fw"></i>
+                    </a>
+                </div>
+                <form id="sign-up" action="https://PhilipShane.us3.list-manage.com/subscribe/post" method="POST" target="mailchimp-response">
+                    <input type="text" id="email" name="MERGE0" placeholder="Sign up for email updates">
+                    <input type="hidden" name="u" value="c0e157c2cd74db24a3d904642">
+                    <input type="hidden" name="id" value="9360d6df85">
+                    <div id="gears">
+                        <img id="big-gear">
+                        <img id="small-gear">
+                    </div>
+                    <div id="subscribed"><i class="fas fa-book"></i>&nbsp; Thanks for subscribing!</div>
+                </form>
+                <iframe id="mailchimp-response" name="mailchimp-response" hidden></iframe>
+                <div class="copyright">
+                    <span>
+                        <div> web design </div>
+                        <div> documentary </div>
+                        <div> background art & Myst font </div>
+                    </span>
+                    <span>
+                        <div> Elana Bogdan </div>
+                        <div> &copy; Glorious Nerds </div>
+                        <div> &copy; Cyan, Inc. </div>
+                    </span>
+                </div>
             </div>
         </div>
 
-        <div id="footer">
-            <div id="social">
-                <a href="#" target="_blank" hidden>
-                    <i class="fab fa-kickstarter fa-2x fa-fw"></i>
-                </a>
-                <a href="https://twitter.com/TheMystDoc/" target="_blank">
-                    <i class="fab fa-twitter fa-2x fa-fw"></i>
-                </a>
-                <a href="https://www.instagram.com/TheMystDoc/" target="_blank">
-                    <i class="fab fa-instagram fa-2x fa-fw"></i>
-                </a>
-                <a href="https://www.facebook.com/theMYSTdoc/" target="_blank">
-                    <i class="fab fa-facebook-square fa-2x fa-fw"></i>
-                </a>
-            </div>
-            <form id="sign-up" action="https://PhilipShane.us3.list-manage.com/subscribe/post" method="POST" target="mailchimp-response">
-                <input type="text" id="email" name="MERGE0" placeholder="Sign up for email updates">
-                <input type="hidden" name="u" value="c0e157c2cd74db24a3d904642">
-                <input type="hidden" name="id" value="9360d6df85">
-                <div id="gears">
-                    <img id="big-gear">
-                    <img id="small-gear">
-                </div>
-                <div id="subscribed"><i class="fas fa-book"></i>&nbsp; Thanks for subscribing!</div>
-            </form>
-            <iframe id="mailchimp-response" name="mailchimp-response" hidden></iframe>
-            <div id="copyright">
-                <span>
-                    <div> web design </div>
-                    <div> documentary </div>
-                    <div> background art & Myst font </div>
-                </span>
-                <span>
-                    <div> Elana Bogdan </div>
-                    <div> &copy; Glorious Nerds </div>
-                    <div> &copy; Cyan, Inc. </div>
-                </span>
+        <div id="mobile-footer">
+            <div class="copyright">
+                <span> web design by Elana Bogdan </span>
+                <span class="spacer">•</span>
+                <span> documentary &copy; Glorious Nerds </span>
+                <span> background art & Myst font &copy; Cyan, Inc. </span>
             </div>
         </div>
 
