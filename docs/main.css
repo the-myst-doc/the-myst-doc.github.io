@@ -401,6 +401,9 @@ body {
     font-size: 18px;
     opacity: 0.65;
   }
+  #video-camera #vignette {
+    box-shadow: inset 0 0 20px black, inset 0 0 40px rgba(0, 0, 0, 0.6);
+  }
 }
 @media only screen and (max-device-width: 850px) and (orientation: portrait) {
   #title {
@@ -410,11 +413,13 @@ body {
     transform-origin: 50% 15%;
   }
   #video-camera {
-    right: -31vh;
-    bottom: -13vh;
+    right: auto;
+    bottom: auto;
+    left: -4%;
+    top: 28%;
   }
   #video-camera #camera-body {
-    height: 80vh;
+    height: 142vw;
   }
 }
 @media only screen and (max-device-width: 850px) and (orientation: landscape) {
@@ -427,8 +432,8 @@ body {
     top: 50%;
   }
   #content #video-camera {
-    bottom: -24vh;
-    right: -30vh;
+    bottom: -27%;
+    right: -16%;
   }
   #mobile-footer .copyright {
     padding: 8px 10px;

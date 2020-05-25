@@ -164,10 +164,11 @@ $(document).ready(() => {
                 .toggleClass('validated', isValidEmail);
         });
 
-    zoomBtn$.click(() => {
-        currentZoom = (currentZoom + 1) % ZOOM_STOPS.length;
+    function setZoom(zoom) {
+        currentZoom = zoom;
         viewscreen$.css('background-size', `${ZOOM_STOPS[currentZoom]}% auto`);
-    });
+    }
+    zoomBtn$.click(() => setZoom((currentZoom + 1) % ZOOM_STOPS.length));
 
     $(document).on('click', '#gears .validated', () => submitForm());
 
