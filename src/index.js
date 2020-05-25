@@ -9,8 +9,10 @@ import LinkingSound from '../audio/linking.wav';
 import LinkingPanel from '../video/red_panel.mov';
 
 let rotation = 0;
-let isDragging = false, isValidEmail = false;;
-let mousePosX, mousePosY, scrollTop;
+let isDragging = false, isPinching = false;
+let isValidEmail = false;
+let didDrag = false;
+let mousePosX, mousePosY, scrollTop, pinchDist;
 let bodyWidth, bodyHeight;
 
 const CAMERA_BACKGROUND_RATIO = 2;
@@ -20,6 +22,7 @@ const SCROLL_AMOUNT = 12;
 
 const ZOOM_STOPS = [200, 350, 650];
 let currentZoom = 0;
+let zoomOffset = 0;
 
 const isMobile = () => Boolean(window.matchMedia("only screen and (max-device-width: 850px)").matches);
 const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
@@ -27,6 +30,13 @@ const getPos = (e) => ({
     posX: e.clientX || e.changedTouches[0].clientX,
     posY: e.clientY || e.changedTouches[0].clientY,
 });
+const getDist = (e) => {
+    if (e.touches.length !== 2) return false;
+    return Math.sqrt(
+        Math.pow(e.touches[0].clientX - e.touches[1].clientX, 2) +
+        Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2)
+    );
+};
 
 $(document).ready(() => {
     const camera$ = $('#video-camera');
@@ -93,7 +103,7 @@ $(document).ready(() => {
 
     function shiftView(deltaX, deltaY) {
         function shiftViewParam(param, delta, scale) {
-            scale *= ZOOM_STOPS[0] / ZOOM_STOPS[currentZoom];
+            scale *= ZOOM_STOPS[0] / (ZOOM_STOPS[currentZoom] + zoomOffset);
             const updatedParam = param - (delta * scale);
             return Math.min(Math.max(0, updatedParam), 100); 
         }
@@ -186,8 +196,8 @@ $(document).ready(() => {
         });
 
     function setZoom(zoom) {
-        currentZoom = zoom;
-        viewscreen$.css('background-size', `${ZOOM_STOPS[currentZoom]}% auto`);
+        if (zoom !== undefined ) currentZoom = zoom;
+        viewscreen$.css('background-size', `${ZOOM_STOPS[currentZoom] + zoomOffset}% auto`);
     }
     zoomBtn$.click(() => setZoom((currentZoom + 1) % ZOOM_STOPS.length));
 
@@ -207,22 +217,43 @@ $(document).ready(() => {
             }
 
             scrollTop = newScrollTop;
-        });
+        })
 
-    viewscreen$.on('mousedown touchstart', (e) => {
-        isDragging = true;
+    viewscreen$
+        .on('mousedown touchstart', (e) => {
+            if (e.touches && e.touches.length === 2) {
+                isPinching = true;
+                return pinchDist = getDist(e);
+            }
 
-        const {posX, posY} = getPos(e);
-        mousePosX = posX;
-        mousePosY = posY;
-    });
+            isDragging = true;
+            didDrag = true;
+
+            const {posX, posY} = getPos(e);
+            mousePosX = posX;
+            mousePosY = posY;
+        })
 
     $('body')
         .on('mouseup touchend', () => {
             isDragging = false;
+            isPinching = false;
             return true;
         })
         .on('mousemove touchmove', (e) => {
+            if (isPinching && pinchDist) {
+                const newDist = getDist(e);
+                if (!newDist) {
+                    return isDragging = false;
+                }
+
+                zoomOffset = Math.min(Math.max(zoomOffset + newDist - pinchDist, -20), 400);
+                pinchDist = newDist;
+                return setZoom();
+            }
+
+            if (didDrag && !isDragging) return;
+
             const {posX, posY} = getPos(e);
 
             if (mousePosX && mousePosY) {
