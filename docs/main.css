@@ -365,7 +365,7 @@ body {
   }
   #content {
     background-size: auto 100%;
-    perspective: none;
+    perspective: 2px;
     height: 92vh;
     min-height: 0;
     min-width: 0;

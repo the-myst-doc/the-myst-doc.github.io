@@ -81,7 +81,7 @@ $(document).ready(() => {
 
         const FADE_IN_DURATION = 1600;
         linkingTitle$.add(linkingPanel$).css({display: 'block'});
-        linkingPanel$.animate({opacity: 1}, FADE_IN_DURATION).get(0).play();
+        linkingPanel$.animate({opacity: 1}, FADE_IN_DURATION, () => viewscreen$.hide()).get(0).play();
         setTimeout(() => linkingTitle$.animate({opacity: 0.8}, FADE_IN_DURATION), 500);
 
         zoomBtn$.hide();
