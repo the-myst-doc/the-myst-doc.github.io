@@ -10,12 +10,13 @@ import LinkingPanel from '../video/red_panel.mov';
 
 let rotation = 0;
 let isDragging = false, isValidEmail = false;;
-let mousePosX, mousePosY;
+let mousePosX, mousePosY, scrollTop;
 let bodyWidth, bodyHeight;
 
 const CAMERA_BACKGROUND_RATIO = 2;
 const BACKGROUND_MOUSEMOVE = .004;
 const BACKGROUND_DRAG = .1;
+const SCROLL_AMOUNT = 12;
 
 const ZOOM_STOPS = [200, 350, 650];
 let currentZoom = 0;
@@ -55,9 +56,9 @@ $(document).ready(() => {
     }
 
     function shakeLinkingPanel() {
-        const SHAKE_MAGNITUDE = 2.5;
+        const SHAKE_MAGNITUDE = 3;
         const SHAKE_CENTER = 50;
-        const SHAKE_INTERVAL = 300;
+        const SHAKE_INTERVAL = 350;
 
         linkingTitle$.css({
             top: `${randFloat(SHAKE_CENTER, SHAKE_MAGNITUDE)}%`,
@@ -74,12 +75,10 @@ $(document).ready(() => {
             return;
         }
 
-        soundElement.play();
-
         const FADE_IN_DURATION = 1600;
         linkingTitle$.add(linkingPanel$).css({display: 'block'});
         linkingPanel$.animate({opacity: 1}, FADE_IN_DURATION).get(0).play();
-        setTimeout(() => linkingTitle$.animate({opacity: 0.7}, FADE_IN_DURATION), 500);
+        setTimeout(() => linkingTitle$.animate({opacity: 0.8}, FADE_IN_DURATION), 500);
 
         zoomBtn$.hide();
 
@@ -126,16 +125,20 @@ $(document).ready(() => {
 
     function submitForm() {
         if (!isValidEmail) {
-            return;
+            return false;
         }
 
         $('#sign-up').submit();
         $('#email').val('').trigger('input');
 
-        const animationDirection = isMobile() ? 'top' : 'right';
         const animateTo = {opacity: 1}, animateFrom = {};
-        animateTo[animationDirection] = '-10px';
-        animateFrom[animationDirection] = '20px';
+        if (isMobile()) {
+            animateTo.top = '-12px';
+            animateFrom.top = '20px';
+        } else {
+            animateTo.right = '-10px';
+            animateFrom.right = '20px';
+        }
 
         const subscribed$ = $('#subscribed');
         subscribed$.animate(
@@ -152,13 +155,18 @@ $(document).ready(() => {
                 }, 1200);
             }
         );
+
+        return true;
     }
 
     $('#email')
         .keydown((e) => {
             if (e.which === 13) {
                 e.preventDefault();
-                submitForm();
+                if (submitForm()) {
+                    // Audio needs to play from inside event handler for Safari
+                    setTimeout(() => soundElement.play(), 800);
+                }
             } else {
                 updateGears();
             }
@@ -177,7 +185,23 @@ $(document).ready(() => {
     }
     zoomBtn$.click(() => setZoom((currentZoom + 1) % ZOOM_STOPS.length));
 
-    $(document).on('click', '#gears .validated', () => submitForm());
+    $(document)
+        .on('click', '#gears .validated', () => {
+            if (submitForm()) {
+                // Audio needs to play from inside event handler for Safari
+                setTimeout(() => soundElement.play(), 800);
+            }
+        })
+        .scroll((e) => {
+            if (!isMobile()) return;
+
+            const newScrollTop = $(window).scrollTop();
+            if (scrollTop) {
+                shiftView(SCROLL_AMOUNT * (newScrollTop - scrollTop), 0);
+            }
+
+            scrollTop = newScrollTop;
+        });
 
     viewscreen$.mousedown(() => isDragging = true);
     $('body')
@@ -187,14 +211,18 @@ $(document).ready(() => {
                 return;
             }
 
-            shiftView(
-                clientX - mousePosX,
-                clientY - mousePosY,
-            );
+            if (mousePosX && mousePosY) {
+                shiftView(
+                    clientX - mousePosX,
+                    clientY - mousePosY,
+                );
+            }
 
             mousePosX = clientX;
             mousePosY = clientY;
         });
+
+    $('#record-btn').click(() => $('#recording').toggle());
 
     $('.social').clone().prependTo('#mobile-footer');
 

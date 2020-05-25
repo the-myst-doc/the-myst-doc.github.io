@@ -10,6 +10,10 @@
   font-family: ZapfinoLigatures;
   src: url(ZapfinoExtraLT-Ligatures.otf);
 }
+@font-face {
+  font-family: ZapfinoBold;
+  src: url(ZapfinoForteLTPro.otf);
+}
 body {
   background-color: #161f30;
   margin: 0;
@@ -46,7 +50,8 @@ body {
 #video-camera #camera-body {
   height: 109vh;
 }
-#video-camera #camera-screen > * {
+#video-camera #camera-screen > *,
+#video-camera #backing {
   position: absolute;
   top: 20.8%;
   left: 10.4%;
@@ -71,9 +76,8 @@ body {
   text-align: center;
   white-space: nowrap;
   padding: 30px 0;
-  font-family: ZapfinoLT, fantasy;
+  font-family: ZapfinoBold, fantasy;
   font-size: 8vh;
-  font-weight: bold;
   -webkit-text-size-adjust: 100%;
   color: white;
   text-shadow: 0px 0px 3px red, 0px 0px 8px red;
@@ -101,19 +105,6 @@ body {
   background-color: black;
   transform: scale(1.1);
 }
-#video-camera #recording {
-  background-color: #b40000;
-  opacity: 0.75;
-  width: 5.5%;
-  height: 8.3%;
-  border-radius: 100px;
-  position: absolute;
-  top: 2.75%;
-  left: 2.75%;
-  z-index: 4;
-  animation: blink 1.2s step-start infinite;
-  display: none;
-}
 #video-camera #zoom {
   cursor: url(pointer_hand.png), pointer;
 }
@@ -135,6 +126,27 @@ body {
 }
 #video-camera #zoom:hover #zoom-btn-hover {
   display: block;
+}
+#video-camera #recording {
+  background-color: #b40000;
+  opacity: 0.75;
+  width: 5.5%;
+  height: 8.3%;
+  border-radius: 100px;
+  position: absolute;
+  top: 2.75%;
+  left: 2.75%;
+  z-index: 4;
+  animation: blink 1.2s step-start infinite;
+  display: none;
+}
+#video-camera #record-btn {
+  position: absolute;
+  top: 27.2%;
+  right: 8.8%;
+  width: 5.2%;
+  height: 3%;
+  cursor: url(pointer_hand.png), pointer;
 }
 @keyframes blink {
   50% {
@@ -291,6 +303,7 @@ body {
   padding: 0 20px;
   height: 37px;
   line-height: 37px;
+  z-index: -1;
   opacity: 0;
 }
 #footer .social {
@@ -359,16 +372,17 @@ body {
   }
   #lower-third,
   #content .social,
-  #gears,
-  #content .copyright {
+  #content .copyright,
+  #zoom,
+  #record-btn {
     display: none;
   }
   #footer {
     text-align: center;
-    padding-left: 0;
-    padding-right: 0;
-    transform: none;
     background: #2e4264;
+    padding: 8px 0;
+    transform: none;
+    bottom: 0;
   }
   #footer form {
     margin: 0;
@@ -421,6 +435,9 @@ body {
     transform: translateX(-47%) scale(0.7);
     transform-origin: 50% 15%;
   }
+  #gears {
+    display: none;
+  }
   #video-camera {
     right: auto;
     bottom: auto;
@@ -446,6 +463,9 @@ body {
   #content #video-camera {
     bottom: -27%;
     right: -16%;
+  }
+  #content #footer #gears {
+    right: 4%;
   }
   #mobile-footer .copyright {
     -webkit-text-size-adjust: 100%;

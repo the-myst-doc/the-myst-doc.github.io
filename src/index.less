@@ -10,6 +10,10 @@
     font-family: ZapfinoLigatures;
     src: url('../fonts/ZapfinoExtraLT-Ligatures.otf');
 }
+@font-face {
+    font-family: ZapfinoBold;
+    src: url('../fonts/ZapfinoForteLTPro.otf');
+}
 
 @bg-color: #2e4264;
 @pop-up-color: rgb(0, 217, 255);
@@ -60,7 +64,7 @@ body {
         height: 109vh;
     }
 
-    #camera-screen > * {
+    #camera-screen > *, #backing {
         position: absolute;
         top: 20.8%;
         left: 10.4%;
@@ -90,9 +94,8 @@ body {
 
         padding: 30px 0;
 
-        font-family: ZapfinoLT, fantasy;
+        font-family: ZapfinoBold, fantasy;
         font-size: 8vh;
-        font-weight: bold;
         -webkit-text-size-adjust: 100%;
 
         color: white;
@@ -127,24 +130,6 @@ body {
         transform: scale(1.1);
     }
 
-    #recording {
-        background-color: rgb(180, 0, 0);
-        opacity: .75;
-
-        width: 5.5%;
-        height: 8.3%;
-        border-radius: 100px;
-
-        position: absolute;
-        top: 2.75%;
-        left: 2.75%;
-        z-index: 4;
-
-        animation: blink 1.2s step-start infinite;
-
-        display: none;
-    }
-
     #zoom {
         cursor: url('../img/pointer_hand.png'), pointer;
 
@@ -171,6 +156,33 @@ body {
                 display: block;
             }
         }
+    }
+
+    #recording {
+        background-color: rgb(180, 0, 0);
+        opacity: .75;
+
+        width: 5.5%;
+        height: 8.3%;
+        border-radius: 100px;
+
+        position: absolute;
+        top: 2.75%;
+        left: 2.75%;
+        z-index: 4;
+
+        animation: blink 1.2s step-start infinite;
+
+        display: none;
+    }
+
+    #record-btn {
+        position: absolute;
+        top: 27.2%;
+        right: 8.8%;
+        width: 5.2%;
+        height: 3%;
+        cursor: url('../img/pointer_hand.png'), pointer;
     }
 }
 
@@ -371,6 +383,7 @@ body {
         height: 37px;
         line-height: 37px;
 
+        z-index: -1;
         opacity: 0;
     }
 
@@ -457,16 +470,17 @@ body {
         box-shadow: 0 0 10px black;
     }
 
-    #lower-third, #content .social, #gears, #content .copyright {
+    #lower-third, #content .social, #content .copyright, #zoom, #record-btn {
         display: none;
     }
 
     #footer {
         text-align: center;
-        padding-left: 0;
-        padding-right: 0;
-        transform: none;
         background: @bg-color;
+
+        padding: 8px 0;
+        transform: none;
+        bottom: 0;
 
         form {
             margin: 0;
@@ -535,6 +549,10 @@ and (orientation: portrait) {
         transform-origin: 50% 15%;
     }
 
+    #gears {
+        display: none;
+    }
+
     #video-camera {
         right: auto;
         bottom: auto;
@@ -568,6 +586,10 @@ and (orientation: landscape) {
         #video-camera {
             bottom: -27%;
             right: -16%;
+        }
+
+        #footer #gears {
+            right: 4%;
         }
     }
 
