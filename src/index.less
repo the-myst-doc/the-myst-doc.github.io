@@ -539,6 +539,39 @@ body {
     }
 }
 
+// Mobile landscape
+@media only screen
+and (min-device-width: 425px)
+and (max-device-width: 850px) {
+    #content {
+        background-size: 100% auto;
+
+        #title {
+            transform: translateY(-50%) scale(0.55);
+            transform-origin: 0 30%;
+            top: 50%;
+        }
+
+        #video-camera {
+            bottom: -27%;
+            right: -16%;
+        }
+
+        #footer #gears {
+            right: 4%;
+        }
+    }
+
+    #mobile-footer {
+        .copyright {
+            -webkit-text-size-adjust: 100%;
+            span.spacer {
+                display: inline;
+            }
+        }
+    }
+}
+
 // Mobile portrait
 @media only screen
 and (max-device-width: 425px) {
@@ -566,39 +599,6 @@ and (max-device-width: 425px) {
 
         #linking-title {
             font-size: 9.5vw;
-        }
-    }
-}
-
-// Mobile landscape
-@media only screen
-and (max-device-width: 850px)
-and (min-device-width: 425px) {
-    #content {
-        background-size: 100% auto;
-
-        #title {
-            transform: translateY(-50%) scale(0.55);
-            transform-origin: 0 30%;
-            top: 50%;
-        }
-
-        #video-camera {
-            bottom: -27%;
-            right: -16%;
-        }
-
-        #footer #gears {
-            right: 4%;
-        }
-    }
-
-    #mobile-footer {
-        .copyright {
-            -webkit-text-size-adjust: 100%;
-            span.spacer {
-                display: inline;
-            }
         }
     }
 }
