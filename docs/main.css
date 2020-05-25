@@ -40,12 +40,11 @@ body {
 }
 #video-camera {
   position: absolute;
-  right: -30px;
-  bottom: -200px;
-  transform: scale(1.1);
+  right: -9vh;
+  bottom: -27vh;
 }
 #video-camera #camera-body {
-  height: 100vh;
+  height: 109vh;
 }
 #video-camera #camera-screen > * {
   position: absolute;
@@ -352,16 +351,10 @@ body {
   #content {
     background-size: auto 100%;
     perspective: none;
-    height: 95vh;
+    height: 92vh;
     min-height: 0;
     min-width: 0;
     box-shadow: 0 0 10px black;
-  }
-  #title {
-    top: 0;
-    left: 50%;
-    transform: translateX(-47%) scale(0.7);
-    transform-origin: 50% 15%;
   }
   #lower-third,
   #content .social,
@@ -369,11 +362,6 @@ body {
   #content .copyright,
   #subscribed {
     display: none;
-  }
-  #video-camera {
-    right: -310px;
-    bottom: -120px;
-    transform: scale(0.85);
   }
   #footer {
     text-align: center;
@@ -414,9 +402,33 @@ body {
     opacity: 0.65;
   }
 }
+@media only screen and (max-device-width: 850px) and (orientation: portrait) {
+  #title {
+    top: 0;
+    left: 50%;
+    transform: translateX(-47%) scale(0.7);
+    transform-origin: 50% 15%;
+  }
+  #video-camera {
+    right: -31vh;
+    bottom: -13vh;
+  }
+  #video-camera #camera-body {
+    height: 80vh;
+  }
+}
 @media only screen and (max-device-width: 850px) and (orientation: landscape) {
   #content {
     background-size: 100% auto;
+  }
+  #content #title {
+    transform: translateY(-50%) scale(0.55);
+    transform-origin: 0 30%;
+    top: 50%;
+  }
+  #content #video-camera {
+    bottom: -24vh;
+    right: -30vh;
   }
   #mobile-footer .copyright {
     padding: 8px 10px;

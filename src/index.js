@@ -26,7 +26,7 @@ const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnit
 $(document).ready(() => {
     const camera$ = $('#video-camera');
     const viewscreen$ = $('#viewer');
-    const body$ = $('body');
+    const body$ = $('#content');
     const linkingTitle$ = $('#linking-title');
     const linkingPanel$ = $('#linking-panel');
     const zoomBtn$ = $('#zoom');
@@ -113,7 +113,7 @@ $(document).ready(() => {
             'background-position-y': `${shiftViewParam(camY, deltaY, cameraScale)}%`
         });
 
-        camera$.css('transform', `rotateY(${-getRotation(camX, 5)}deg) rotateX(${getRotation(camY, 12)}deg) scale(1.1)`);
+        camera$.css('transform', `rotateY(${-getRotation(camX, 5)}deg) rotateX(${getRotation(camY, 12)}deg)`);
 
         const {posX: bodyX, posY: bodyY} = getBackgroundPosition(body$);
         body$.css({
@@ -188,7 +188,8 @@ $(document).ready(() => {
             mousePosY = clientY;
         });
 
-    updateGears();
     $('.social').clone().prependTo('#mobile-footer');
+
+    updateGears();
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1500), 500);
 });
