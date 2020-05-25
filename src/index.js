@@ -23,6 +23,10 @@ let currentZoom = 0;
 
 const isMobile = () => Boolean(window.matchMedia("only screen and (max-device-width: 850px)").matches);
 const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
+const getPos = (e) => ({
+    posX: e.clientX || e.changedTouches[0].clientX,
+    posY: e.clientY || e.changedTouches[0].clientY,
+});
 
 $(document).ready(() => {
     const camera$ = $('#video-camera');
@@ -105,7 +109,7 @@ $(document).ready(() => {
             return (2 * max * (amount / 100)) - max;
         }
 
-        const backgroundScale = isDragging ? BACKGROUND_DRAG : BACKGROUND_MOUSEMOVE;
+        const backgroundScale = (isDragging) ? BACKGROUND_DRAG : BACKGROUND_MOUSEMOVE;
         const cameraScale = backgroundScale * CAMERA_BACKGROUND_RATIO;
 
         const {posX: camX, posY: camY} = getBackgroundPosition(viewscreen$);
@@ -114,7 +118,9 @@ $(document).ready(() => {
             'background-position-y': `${shiftViewParam(camY, deltaY, cameraScale)}%`
         });
 
-        camera$.css('transform', `rotateY(${-getRotation(camX, 5)}deg) rotateX(${getRotation(camY, 12)}deg)`);
+        if (!isMobile()) {
+            camera$.css('transform', `rotateY(${-getRotation(camX, 5)}deg) rotateX(${getRotation(camY, 12)}deg)`);
+        }
 
         const {posX: bodyX, posY: bodyY} = getBackgroundPosition(body$);
         body$.css({
@@ -203,24 +209,29 @@ $(document).ready(() => {
             scrollTop = newScrollTop;
         });
 
-    viewscreen$.mousedown(() => isDragging = true);
+    viewscreen$.on('mousedown touchstart', (e) => {
+        isDragging = true;
+
+        const {posX, posY} = getPos(e);
+        mousePosX = posX;
+        mousePosY = posY;
+    });
+
     $('body')
-        .mouseup(() => isDragging = false)
-        .mousemove(({clientX, clientY}) => {
-            if (isMobile() && !isDragging) {
-                return;
-            }
+        .on('mouseup touchend', () => isDragging = false)
+        .on('mousemove touchmove', (e) => {
+            const {posX, posY} = getPos(e);
 
             if (mousePosX && mousePosY) {
                 shiftView(
-                    clientX - mousePosX,
-                    clientY - mousePosY,
+                    posX - mousePosX,
+                    posY - mousePosY,
                 );
             }
 
-            mousePosX = clientX;
-            mousePosY = clientY;
-        });
+            mousePosX = posX;
+            mousePosY = posY;
+        })
 
     $('#record-btn').click(() => $('#recording').toggle());
 

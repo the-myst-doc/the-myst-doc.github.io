@@ -96,6 +96,7 @@ body {
   background-position: 50% 50%;
   transition: background-size 0.75s;
   cursor: url(open_hand.png), pointer;
+  touch-action: none;
 }
 #video-camera #viewer:active {
   cursor: url(closed_hand.png), pointer;
