@@ -83,7 +83,9 @@ $(document).ready(() => {
 
         zoomBtn$.hide();
 
-        shakeLinkingPanel();
+        if (!isMobile()) {
+            shakeLinkingPanel();
+        }
     }
 
     function shiftView(deltaX, deltaY) {
