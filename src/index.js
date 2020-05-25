@@ -218,7 +218,10 @@ $(document).ready(() => {
     });
 
     $('body')
-        .on('mouseup touchend', () => isDragging = false)
+        .on('mouseup touchend', () => {
+            isDragging = false;
+            return true;
+        })
         .on('mousemove touchmove', (e) => {
             const {posX, posY} = getPos(e);
 
