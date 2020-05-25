@@ -199,5 +199,6 @@ $(document).ready(() => {
     $('.social').clone().prependTo('#mobile-footer');
 
     updateGears();
-    setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1500), 500);
+    setTimeout(() => setZoom(0), 400);
+    setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1600), 600);
 });

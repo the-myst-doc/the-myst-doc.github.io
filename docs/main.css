@@ -88,9 +88,9 @@ body {
 #video-camera #viewer {
   overflow: hidden;
   background-image: url(myst_dock.jpg);
-  background-size: 200% auto;
+  background-size: 350% auto;
   background-position: 50% 50%;
-  transition: background-size 0.5s;
+  transition: background-size 0.75s;
   cursor: url(open_hand.png), pointer;
 }
 #video-camera #viewer:active {
@@ -393,8 +393,8 @@ body {
   }
   #mobile-footer .copyright {
     display: inline-block;
-    padding: 8px 6px;
     opacity: 0.55;
+    padding: 0 6px 8px 6px;
   }
   #mobile-footer .copyright span {
     white-space: nowrap;
@@ -403,7 +403,7 @@ body {
     display: none;
   }
   #mobile-footer .social {
-    padding-top: 10px;
+    padding: 16px 0 12px 0;
   }
   #mobile-footer .social a {
     margin: 0 6px;
@@ -431,7 +431,7 @@ body {
     height: 142vw;
   }
   #video-camera #linking-title {
-    font-size: 10.5vw;
+    font-size: 9.5vw;
   }
 }
 @media only screen and (max-device-width: 850px) and (orientation: landscape) {
@@ -448,7 +448,6 @@ body {
     right: -16%;
   }
   #mobile-footer .copyright {
-    padding: 8px 10px;
     -webkit-text-size-adjust: 100%;
   }
   #mobile-footer .copyright span.spacer {

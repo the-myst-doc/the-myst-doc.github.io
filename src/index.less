@@ -111,10 +111,10 @@ body {
         overflow: hidden;
 
         background-image: url('../img/myst_dock.jpg');
-        background-size: 200% auto;
+        background-size: 350% auto;
         background-position: 50% 50%;
 
-        transition: background-size 0.5s;
+        transition: background-size .75s;
 
         cursor: url('../img/open_hand.png'), pointer;
         &:active {
@@ -497,8 +497,8 @@ body {
 
         .copyright {
             display: inline-block;
-            padding: 8px 6px;
             opacity: 0.55;
+            padding: 0 6px 8px 6px;
 
             span {
                 white-space: nowrap;
@@ -509,7 +509,7 @@ body {
         }
 
         .social {
-            padding-top: 10px;
+            padding: 16px 0 12px 0;
 
             a {
                 margin: 0 6px;
@@ -547,7 +547,7 @@ and (orientation: portrait) {
         }
 
         #linking-title {
-            font-size: 10.5vw;
+            font-size: 9.5vw;
         }
     }
 }
@@ -573,7 +573,6 @@ and (orientation: landscape) {
 
     #mobile-footer {
         .copyright {
-            padding: 8px 10px;
             -webkit-text-size-adjust: 100%;
             span.spacer {
                 display: inline;
