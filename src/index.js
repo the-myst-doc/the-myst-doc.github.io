@@ -201,6 +201,16 @@ $(document).ready(() => {
     }
     zoomBtn$.click(() => setZoom((currentZoom + 1) % ZOOM_STOPS.length));
 
+    function startPinch(e) {
+        isPinching = true;
+        pinchDist = getDist(e);
+        viewscreen$.css('transition', 'none');
+    }
+    function stopPinch() {
+        isPinching = false;
+        viewscreen$.css('transition', 'background-size .75s');
+    }
+
     $(document)
         .on('click', '#gears .validated', () => {
             if (submitForm()) {
@@ -222,8 +232,7 @@ $(document).ready(() => {
     viewscreen$
         .on('mousedown touchstart', (e) => {
             if (e.touches && e.touches.length === 2) {
-                isPinching = true;
-                return pinchDist = getDist(e);
+                return startPinch(e);
             }
 
             isDragging = true;
@@ -237,17 +246,15 @@ $(document).ready(() => {
     $('body')
         .on('mouseup touchend', () => {
             isDragging = false;
-            isPinching = false;
+            stopPinch()
             return true;
         })
         .on('mousemove touchmove', (e) => {
             if (isPinching && pinchDist) {
                 const newDist = getDist(e);
-                if (!newDist) {
-                    return isDragging = false;
-                }
+                if (!newDist) return stopPinch();
 
-                zoomOffset = Math.min(Math.max(zoomOffset + newDist - pinchDist, -20), 400);
+                zoomOffset = Math.min(Math.max(zoomOffset + newDist - pinchDist, -50), 500);
                 pinchDist = newDist;
                 return setZoom();
             }
