@@ -537,68 +537,67 @@ body {
     #video-camera #vignette {
         box-shadow: inset 0 0 20px black, inset 0 0 40px rgba(0, 0, 0, 0.6);
     }
-}
 
-// Mobile landscape
-@media only screen
-and (min-device-width: 425px)
-and (max-device-width: 850px) {
-    #content {
-        background-size: 100% auto;
+    /* Landscape-only */
 
-        #title {
-            transform: translateY(-50%) scale(0.55);
-            transform-origin: 0 30%;
-            top: 50%;
+    body.landscape {
+        #content {
+            background-size: 100% auto;
+
+            #title {
+                transform: translateY(-50%) scale(0.55);
+                transform-origin: 0 30%;
+                top: 50%;
+            }
+
+            #video-camera {
+                bottom: -27%;
+                right: -16%;
+            }
+
+            #footer #gears {
+                right: 4%;
+            }
         }
 
-        #video-camera {
-            bottom: -27%;
-            right: -16%;
-        }
-
-        #footer #gears {
-            right: 4%;
-        }
-    }
-
-    #mobile-footer {
-        .copyright {
-            -webkit-text-size-adjust: 100%;
-            span.spacer {
-                display: inline;
+        #mobile-footer {
+            .copyright {
+                -webkit-text-size-adjust: 100%;
+                span.spacer {
+                    display: inline;
+                }
             }
         }
     }
-}
 
-// Mobile portrait
-@media only screen
-and (max-device-width: 425px) {
-    #title {
-        top: 0;
-        left:50%;
-        transform: translateX(-47%) scale(0.7);
-        transform-origin: 50% 15%;
-    }
+    /* Portrait-only */
 
-    #gears {
-        display: none;
-    }
-
-    #video-camera {
-        right: auto;
-        bottom: auto;
-
-        left: -4%;
-        top: 28%;
-
-        #camera-body {
-            height: 142vw;
+    body.portrait {
+        #title {
+            top: 0;
+            left:50%;
+            transform: translateX(-47%) scale(0.7);
+            transform-origin: 50% 15%;
         }
 
-        #linking-title {
-            font-size: 9.5vw;
+        #gears {
+            display: none;
+        }
+
+        #video-camera {
+            right: auto;
+            bottom: auto;
+
+            left: -4%;
+            top: 28%;
+
+            #camera-body {
+                height: 142vw;
+            }
+
+            #linking-title {
+                font-size: 9.5vw;
+            }
         }
     }
 }

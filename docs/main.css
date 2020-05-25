@@ -427,50 +427,48 @@ body {
   #video-camera #vignette {
     box-shadow: inset 0 0 20px black, inset 0 0 40px rgba(0, 0, 0, 0.6);
   }
-}
-@media only screen and (min-device-width: 425px) and (max-device-width: 850px) {
-  #content {
+  /* Landscape-only */
+  body.landscape #content {
     background-size: 100% auto;
   }
-  #content #title {
+  body.landscape #content #title {
     transform: translateY(-50%) scale(0.55);
     transform-origin: 0 30%;
     top: 50%;
   }
-  #content #video-camera {
+  body.landscape #content #video-camera {
     bottom: -27%;
     right: -16%;
   }
-  #content #footer #gears {
+  body.landscape #content #footer #gears {
     right: 4%;
   }
-  #mobile-footer .copyright {
+  body.landscape #mobile-footer .copyright {
     -webkit-text-size-adjust: 100%;
   }
-  #mobile-footer .copyright span.spacer {
+  body.landscape #mobile-footer .copyright span.spacer {
     display: inline;
   }
-}
-@media only screen and (max-device-width: 425px) {
-  #title {
+  /* Portrait-only */
+  body.portrait #title {
     top: 0;
     left: 50%;
     transform: translateX(-47%) scale(0.7);
     transform-origin: 50% 15%;
   }
-  #gears {
+  body.portrait #gears {
     display: none;
   }
-  #video-camera {
+  body.portrait #video-camera {
     right: auto;
     bottom: auto;
     left: -4%;
     top: 28%;
   }
-  #video-camera #camera-body {
+  body.portrait #video-camera #camera-body {
     height: 142vw;
   }
-  #video-camera #linking-title {
+  body.portrait #video-camera #linking-title {
     font-size: 9.5vw;
   }
 }

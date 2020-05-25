@@ -200,6 +200,15 @@ $(document).ready(() => {
                 .toggleClass('validated', isValidEmail);
         });
 
+    function setOrientation(doInvert) {
+        doInvert = doInvert ? -1 : 1;
+        if (doInvert * $(window).width() > doInvert * $(window).height()) {
+            $('body').addClass('landscape').removeClass('portrait');
+        } else {
+            $('body').addClass('portrait').removeClass('landscape');
+        }
+    }
+
     function setZoom(zoom) {
         if (zoom !== undefined ) currentZoom = zoom;
         viewscreen$.css('background-size', `${ZOOM_STOPS[currentZoom] + zoomOffset}% auto`);
@@ -215,6 +224,8 @@ $(document).ready(() => {
         isPinching = false;
         viewscreen$.css('transition', 'background-size .75s');
     }
+
+    $(window).on('orientationchange', () => setOrientation(true));
 
     $(document)
         .on('click', '#gears .validated', () => {
@@ -284,6 +295,7 @@ $(document).ready(() => {
     $('.social').clone().prependTo('#mobile-footer');
 
     updateGears();
+    setOrientation();
     setTimeout(() => setZoom(0), 400);
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1600), 600);
 });
