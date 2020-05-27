@@ -42,6 +42,7 @@ const getDist = (e) => {
         Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2)
     );
 };
+const validateEmail = (email) => email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i) || false;
 
 $(document).ready(() => {
     const camera$ = $('#video-camera');
@@ -193,8 +194,7 @@ $(document).ready(() => {
             }
         })
         .on('input', (e) => {
-            const emailText = $(e.target).val();
-            isValidEmail = emailText.match(/^[\w\.]+@\w+\.\w{3}$/g) || false;
+            isValidEmail = validateEmail($(e.target).val());
             $('#big-gear, #small-gear')
                 .attr('src', `${isValidEmail ? GearGlow : Gear}`)
                 .toggleClass('validated', isValidEmail);

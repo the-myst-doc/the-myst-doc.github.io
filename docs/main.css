@@ -129,11 +129,11 @@ body {
   display: block;
 }
 #video-camera #recording {
-  background-color: #b40000;
-  opacity: 0.75;
+  background-color: #c80000;
+  opacity: 0.7;
   width: 5.5%;
   height: 8.3%;
-  border-radius: 100px;
+  border-radius: 200px;
   position: absolute;
   top: 2.75%;
   left: 2.75%;
