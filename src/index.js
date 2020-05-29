@@ -196,7 +196,7 @@ $(document).ready(() => {
         .on('input', (e) => {
             isValidEmail = validateEmail($(e.target).val());
             $('#big-gear, #small-gear')
-                .attr('src', `${isValidEmail ? GearGlow : Gear}`)
+                .attr('src', `./dist/${isValidEmail ? GearGlow : Gear}`)
                 .toggleClass('validated', isValidEmail);
         });
 
