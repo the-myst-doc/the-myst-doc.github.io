@@ -11,7 +11,7 @@ function getPlugins(mode) {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src/index.html'),
-            filename: path.resolve(__dirname, 'docs/index.html'),
+            filename: path.resolve(__dirname, 'index.html'),
         })
     ];
 
@@ -30,13 +30,13 @@ function getPlugins(mode) {
 module.exports = (env, argv) => {
     return {
         devServer: {
-            contentBase: path.resolve(__dirname, 'docs'),
+            contentBase: path.resolve(__dirname),
         },
         devtool: 'cheap-module-eval-source-map',
         entry: './src/index.js',
         output: {
             filename: 'bundle.js',
-            path: path.resolve(__dirname, 'docs'),
+            path: path.resolve(__dirname, 'dist'),
         },
         module: {
             rules: [

@@ -54,7 +54,7 @@ $(document).ready(() => {
 
     // Load assets dynamically
     function loadAsset(el$, asset) {
-        el$.attr('src', asset);
+        el$.attr('src', `./dist/${asset}`);
     }
     loadAsset($('#camera-body'), Camera);
     loadAsset($('#gears img'), Gear);
