@@ -279,6 +279,7 @@ $(document).ready(() => {
 
             const {posX, posY} = getPos(e);
 
+            // Cursor event, not touch event
             if (mousePosX && mousePosY) {
                 shiftView(
                     posX - mousePosX,

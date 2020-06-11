@@ -29,7 +29,7 @@ body {
   overflow: hidden;
   position: relative;
   max-width: 1800px;
-  min-width: 1090px;
+  min-width: 1020px;
   min-height: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -215,7 +215,7 @@ body {
 #lower-third {
   opacity: 0;
   position: absolute;
-  z-index: 2;
+  z-index: 5;
   left: -40px;
   bottom: 64px;
   color: white;
@@ -354,9 +354,24 @@ body {
 #mobile-footer {
   display: none;
 }
+@media only screen and (min-height: 1300px) {
+  #content #video-camera {
+    bottom: -10.5vh;
+  }
+  #content #video-camera #camera-body {
+    max-height: 1000px;
+  }
+}
 @media only screen and (max-width: 1090px) {
   #content {
     background-size: auto 100%;
+  }
+}
+@media (hover: none) {
+  #footer {
+    transform: none;
+    bottom: 0;
+    padding: 8px 0;
   }
 }
 @media only screen and (max-device-width: 850px) {
@@ -365,7 +380,7 @@ body {
   }
   #content {
     background-size: auto 100%;
-    height: 92vh;
+    height: 90vh;
     min-height: 0;
     min-width: 0;
     box-shadow: 0 0 10px black;
@@ -380,9 +395,6 @@ body {
   #footer {
     text-align: center;
     background: #2e4264;
-    padding: 8px 0;
-    transform: none;
-    bottom: 0;
   }
   #footer form {
     margin: 0;
@@ -467,6 +479,7 @@ body {
   }
   body.portrait #video-camera #camera-body {
     height: 142vw;
+    max-height: 950px;
   }
   body.portrait #video-camera #linking-title {
     font-size: 9.5vw;
