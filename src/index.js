@@ -29,7 +29,7 @@ const ZOOM_STOPS = [200, 350, 650];
 let currentZoom = 0;
 let zoomOffset = 0;
 
-const isMobile = () => Boolean(window.matchMedia("only screen and (max-device-width: 850px)").matches);
+const isMobile = () => Boolean(window.matchMedia("only screen and (max-device-width: 850px), (hover: none)").matches);
 const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
 const getPos = (e) => ({
     posX: e.clientX || e.changedTouches[0].clientX,
@@ -228,6 +228,7 @@ $(document).ready(() => {
     $(window).on('orientationchange', () => setOrientation(true));
 
     $(document)
+        .on('pageshow', () => setOrientation())
         .on('click', '#gears .validated', () => {
             if (submitForm()) {
                 // Audio needs to play from inside event handler for Safari
@@ -243,7 +244,7 @@ $(document).ready(() => {
             }
 
             scrollTop = newScrollTop;
-        })
+        });
 
     viewscreen$
         .on('mousedown touchstart', (e) => {
