@@ -225,10 +225,11 @@ $(document).ready(() => {
         viewscreen$.css('transition', 'background-size .75s');
     }
 
-    $(window).on('orientationchange', () => setOrientation(true));
+    $(window)
+        .on('orientationchange', () => setOrientation(true))
+        .on('focus', () => setOrientation());
 
     $(document)
-        .on('pageshow', () => setOrientation())
         .on('click', '#gears .validated', () => {
             if (submitForm()) {
                 // Audio needs to play from inside event handler for Safari
