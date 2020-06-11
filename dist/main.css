@@ -161,7 +161,7 @@ body {
   width: 455px;
   height: 280px;
   overflow: hidden;
-  z-index: 2;
+  z-index: 5;
   transform: scale(0.9);
   transform-origin: 0 0;
 }
@@ -380,7 +380,7 @@ body {
   }
   #content {
     background-size: auto 100%;
-    height: 90vh;
+    height: 88vh;
     min-height: 0;
     min-width: 0;
     box-shadow: 0 0 10px black;
@@ -441,7 +441,7 @@ body {
   }
   /* Landscape-only */
   body.landscape #content {
-    background-size: 100% auto;
+    background-size: cover;
   }
   body.landscape #content #title {
     transform: translateY(-50%) scale(0.55);
@@ -453,7 +453,7 @@ body {
     right: -16%;
   }
   body.landscape #content #footer #gears {
-    right: 4%;
+    right: 5%;
   }
   body.landscape #mobile-footer .copyright {
     -webkit-text-size-adjust: 100%;
@@ -475,7 +475,7 @@ body {
     right: auto;
     bottom: auto;
     left: -4%;
-    top: 28%;
+    top: 27%;
   }
   body.portrait #video-camera #camera-body {
     height: 142vw;
