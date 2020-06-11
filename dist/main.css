@@ -43,6 +43,7 @@ body {
   user-select: none;
 }
 #video-camera {
+  -webkit-touch-callout: none;
   position: absolute;
   right: -9vh;
   bottom: -27vh;
