@@ -470,8 +470,7 @@ body {
     }
 }
 
-// All touch devices
-@media (hover: none) {
+.touch-device {
     #footer {
         transform: none;
         bottom: 0;
@@ -479,8 +478,15 @@ body {
     }
 }
 
+// All touch devices
+@media (hover: none) {
+    .touch-device();
+}
+
 // All mobile
 @media only screen and (max-device-width: 850px) {
+    .touch-device(); // In case browser doesn't support {hover: none}
+
     body {
         overflow-y: scroll;
     }
