@@ -44,12 +44,16 @@ const getDist = (e) => {
 };
 const validateEmail = (email) => email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i) || false;
 
-function setOrientation() {
-    if ($(window).width() > $(window).height()) {
+function resizeView() {
+    const height = $(window).height(), width = $(window).width();
+    if (width > height) {
         $('body').addClass('landscape').removeClass('portrait');
     } else {
         $('body').addClass('portrait').removeClass('landscape');
     }
+
+    const vh = height * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
 $(document).ready(() => {
@@ -293,10 +297,10 @@ $(document).ready(() => {
     $('.social').clone().prependTo('#mobile-footer');
 
     updateGears();
-    setOrientation();
+    resizeView();
 
     setTimeout(() => setZoom(0), 400);
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1600), 600);
 });
 
-$(window).on('resize focus', () => setOrientation());
+$(window).on('resize focus', () => resizeView());
