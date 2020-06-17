@@ -45,15 +45,14 @@ const getDist = (e) => {
 const validateEmail = (email) => email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i) || false;
 
 function resizeView() {
-    const height = $(window).height(), width = $(window).width();
+    const height = $(window).innerHeight(), width = $(window).innerWidth();
     if (width > height) {
         $('body').addClass('landscape').removeClass('portrait');
     } else {
         $('body').addClass('portrait').removeClass('landscape');
     }
 
-    const vh = height * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    document.documentElement.style.setProperty('--vh', `${height * 0.01}px`);
 }
 
 $(document).ready(() => {

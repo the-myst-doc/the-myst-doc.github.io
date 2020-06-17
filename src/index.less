@@ -459,11 +459,15 @@ body {
 // For vertical display on larger screens (including iPad Pro)
 @media only screen and (min-width: 1024px) {
     body.portrait {
-        #content #video-camera {
-            bottom: -10.5vh;
+        #content {
+            background-size: cover;
 
-            #camera-body {
-                max-height: 1000px;
+            #video-camera {
+                bottom: -10.5vh;
+
+                #camera-body {
+                    max-height: 1000px;
+                }
             }
         }
     }
@@ -472,7 +476,7 @@ body {
 // Narrow width screen
 @media only screen and (max-width: 1090px) {
     #content {
-        background-size: auto 100%;
+        background-size: cover;
     }
 }
 
@@ -498,7 +502,7 @@ body {
     }
 
     #content {
-        background-size: auto 100%;
+        background-size: cover;
         height: 88vh;
         min-height: 0;
         min-width: 0;
@@ -572,8 +576,6 @@ body {
 
     body.landscape {
         #content {
-            background-size: cover;
-
             #title {
                 transform: translateY(-50%) scale(0.55);
                 transform-origin: 0 30%;
