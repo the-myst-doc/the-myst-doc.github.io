@@ -14,6 +14,9 @@
   font-family: ZapfinoBold;
   src: url(ZapfinoForteLTPro.otf);
 }
+html {
+  height: -webkit-fill-available;
+}
 body {
   background-color: #161f30;
   margin: 0;
@@ -368,6 +371,9 @@ body {
   }
   body.portrait #content #video-camera #camera-body {
     max-height: 1000px;
+  }
+  body.portrait #content #video-camera #linking-title {
+    font-size: 7vw;
   }
 }
 @media only screen and (max-width: 1090px) {

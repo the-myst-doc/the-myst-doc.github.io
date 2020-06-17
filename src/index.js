@@ -31,7 +31,10 @@ let zoomOffset = 0;
 
 const window$ = $(window);
 
-const isMobile = () => Boolean(window.matchMedia("only screen and (max-device-width: 850px), (hover: none)").matches);
+const usingMobileLayout = () => Boolean(window.matchMedia("only screen and (max-device-width: 850px)").matches);
+const supportsTouch = () => Boolean(window.matchMedia("(hover: none)").matches);
+const isMobile = usingMobileLayout() || supportsTouch();
+
 const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
 const getPos = (e) => ({
     posX: e.clientX || e.changedTouches[0].clientX,
@@ -164,7 +167,7 @@ $(document).ready(() => {
         $('#email').val('').trigger('input').blur();
 
         const animateTo = {opacity: 1}, animateFrom = {};
-        if (isMobile()) {
+        if (usingMobileLayout()) {
             animateTo.top = '-12px';
             animateFrom.top = '20px';
         } else {
