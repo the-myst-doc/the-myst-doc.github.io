@@ -305,8 +305,11 @@ $(document).ready(() => {
 
 $(window)
     .on('orientationchange', () => {
-        // Force reload when relying on webkit-fill-available
-        if (isMobile() && !usingMobileLayout()) window.location.reload();
         updateOrientation(true);
+
+        // Force reload when relying on webkit-fill-available
+        if (isMobile() && !usingMobileLayout()) {
+            window.location.reload();
+        }
     })
     .on('resize focus', () => updateOrientation());
