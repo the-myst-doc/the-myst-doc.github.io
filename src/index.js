@@ -308,4 +308,5 @@ window$.on('resize focus', () => resizeView());
 window$.on('orientationchange', () => {
     // Force reload when relying on webkit-fill-available
     if (isMobile() && !usingMobileLayout()) window.location.reload();
+    else return true;
 });
