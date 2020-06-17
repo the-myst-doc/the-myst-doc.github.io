@@ -29,6 +29,8 @@ const ZOOM_STOPS = [200, 350, 650];
 let currentZoom = 0;
 let zoomOffset = 0;
 
+const window$ = $(window);
+
 const isMobile = () => Boolean(window.matchMedia("only screen and (max-device-width: 850px), (hover: none)").matches);
 const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
 const getPos = (e) => ({
@@ -45,14 +47,11 @@ const getDist = (e) => {
 const validateEmail = (email) => email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i) || false;
 
 function resizeView() {
-    const height = $(window).innerHeight(), width = $(window).innerWidth();
-    if (width > height) {
+    if (window$.innerWidth() > window$.innerHeight()) {
         $('body').addClass('landscape').removeClass('portrait');
     } else {
         $('body').addClass('portrait').removeClass('landscape');
     }
-
-    document.documentElement.style.setProperty('--vh', `${height * 0.01}px`);
 }
 
 $(document).ready(() => {
@@ -237,7 +236,7 @@ $(document).ready(() => {
         .scroll((e) => {
             if (!isMobile()) return;
 
-            const newScrollTop = $(window).scrollTop();
+            const newScrollTop = window$.scrollTop();
             if (scrollTop) {
                 shiftView(SCROLL_AMOUNT * (newScrollTop - scrollTop), 0);
             }
@@ -302,4 +301,4 @@ $(document).ready(() => {
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1600), 600);
 });
 
-$(window).on('resize focus', () => resizeView());
+window$.on('resize focus', () => resizeView());
