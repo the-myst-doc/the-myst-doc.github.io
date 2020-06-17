@@ -48,6 +48,7 @@ body {
 }
 
 .disable-selection {
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -56,13 +57,13 @@ body {
 }
 
 #video-camera {
-    -webkit-touch-callout: none; // Prevent tap-and-hold popups in iOS
 
     position: absolute;
     right: -9vh;
     bottom: -27vh;
 
     #camera-body {
+        -webkit-touch-callout: none; // Prevent tap-and-hold popups in iOS
         height: 109vh;
     }
 
@@ -455,7 +456,7 @@ body {
 }
 
 // For vertical display on larger screens (including iPad Pro)
-@media only screen and (min-height: 1300px) {
+body.portrait {
     #content #video-camera {
         bottom: -10.5vh;
 
@@ -610,7 +611,7 @@ body {
             display: none;
         }
 
-        #video-camera {
+        #content #video-camera {
             right: auto;
             bottom: auto;
 

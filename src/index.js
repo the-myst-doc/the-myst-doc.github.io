@@ -44,9 +44,8 @@ const getDist = (e) => {
 };
 const validateEmail = (email) => email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i) || false;
 
-function setOrientation(doInvert) {
-    doInvert = doInvert ? -1 : 1;
-    if (doInvert * $(window).width() > doInvert * $(window).height()) {
+function setOrientation() {
+    if ($(window).width() > $(window).height()) {
         $('body').addClass('landscape').removeClass('portrait');
     } else {
         $('body').addClass('portrait').removeClass('landscape');
@@ -295,10 +294,9 @@ $(document).ready(() => {
 
     updateGears();
     setOrientation();
+
     setTimeout(() => setZoom(0), 400);
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1600), 600);
 });
 
-$(window)
-    .on('orientationchange', () => setOrientation(true))
-    .on('resize focus', () => setOrientation());
+$(window).on('resize focus', () => setOrientation());
