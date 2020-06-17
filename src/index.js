@@ -304,9 +304,8 @@ $(document).ready(() => {
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1600), 600);
 });
 
-window$.on('resize focus', () => resizeView());
 window$.on('orientationchange', () => {
     // Force reload when relying on webkit-fill-available
     if (isMobile() && !usingMobileLayout()) window.location.reload();
-    else return true;
 });
+window$.on('resize focus', () => resizeView());
