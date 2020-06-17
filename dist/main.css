@@ -31,7 +31,6 @@ body {
   position: relative;
   max-width: 1800px;
   min-width: 1020px;
-  min-height: 700px;
   margin-left: auto;
   margin-right: auto;
   perspective: 1600px;
@@ -406,7 +405,6 @@ body {
   #content {
     background-size: cover;
     height: 88vh;
-    min-height: 0;
     min-width: 0;
     box-shadow: 0 0 10px black;
   }
@@ -442,16 +440,29 @@ body {
     width: 100%;
     text-align: center;
   }
-  #mobile-footer .copyright {
-    display: inline-block;
+  #mobile-footer ul.copyright {
     opacity: 0.55;
     padding: 0 6px 8px 6px;
+    margin: 0;
   }
-  #mobile-footer .copyright span {
+  #mobile-footer ul.copyright li {
+    display: inline;
+  }
+  #mobile-footer ul.copyright li::before {
+    content: ' ';
+  }
+  #mobile-footer ul.copyright li::after {
+    content: ' ';
+    white-space: normal;
+    background-image: radial-gradient(circle, #999, #999 50%, transparent 52%);
+    background-size: 7px 7px;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  #mobile-footer ul.copyright li span {
     white-space: nowrap;
-  }
-  #mobile-footer .copyright span.spacer {
-    display: none;
+    display: inline-block;
+    padding: 0 10px;
   }
   #mobile-footer .social {
     padding: 16px 0 12px 0;
@@ -477,11 +488,8 @@ body {
   body.landscape #content #footer #gears {
     right: 5%;
   }
-  body.landscape #mobile-footer .copyright {
+  body.landscape #mobile-footer ul.copyright {
     -webkit-text-size-adjust: 100%;
-  }
-  body.landscape #mobile-footer .copyright span.spacer {
-    display: inline;
   }
   /* Portrait-only */
   body.portrait #title {
