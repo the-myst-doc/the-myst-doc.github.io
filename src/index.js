@@ -33,7 +33,7 @@ const window$ = $(window);
 
 const usingMobileLayout = () => Boolean(window.matchMedia("only screen and (max-device-width: 850px)").matches);
 const supportsTouch = () => Boolean(window.matchMedia("(hover: none)").matches);
-const isMobile = usingMobileLayout() || supportsTouch();
+const isMobile = () => usingMobileLayout() || supportsTouch();
 
 const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
 const getPos = (e) => ({
