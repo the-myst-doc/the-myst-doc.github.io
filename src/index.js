@@ -5,7 +5,7 @@ import Gear from '../img/gear.png';
 import GearGlow from '../img/gear_glow.png';
 import ZoomBtn from '../img/zoom_btn.png';
 import ZoomHover from '../img/zoom_btn_hover.png';
-import MystDocOg from '../img/myst_doc_og.jpg';
+import MystDocOg from '../img/tmd_preview.jpg';
 import LinkingSound from '../audio/linking.wav';
 import LinkingPanel from '../video/red_panel.mov';
 
