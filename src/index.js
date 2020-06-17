@@ -49,8 +49,9 @@ const getDist = (e) => {
 };
 const validateEmail = (email) => email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i) || false;
 
-function resizeView() {
-    if (window$.width() > window$.height()) {
+function updateOrientation(doInvert) {
+    doInvert = doInvert ? -1 : 1;
+    if (doInvert * window$.width() > doInvert * window$.height()) {
         $('body').addClass('landscape').removeClass('portrait');
     } else {
         $('body').addClass('portrait').removeClass('landscape');
@@ -298,7 +299,7 @@ $(document).ready(() => {
     $('.social').clone().prependTo('#mobile-footer');
 
     updateGears();
-    resizeView();
+    updateOrientation();
 
     setTimeout(() => setZoom(0), 400);
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1600), 600);
@@ -307,5 +308,6 @@ $(document).ready(() => {
 window$.on('orientationchange', () => {
     // Force reload when relying on webkit-fill-available
     if (isMobile() && !usingMobileLayout()) window.location.reload();
+    updateOrientation(true);
 });
-window$.on('resize focus', () => resizeView());
+window$.on('resize focus', () => updateOrientation());
