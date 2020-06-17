@@ -29,8 +29,6 @@ const ZOOM_STOPS = [200, 350, 650];
 let currentZoom = 0;
 let zoomOffset = 0;
 
-const window$ = $(window);
-
 const usingMobileLayout = () => Boolean(window.matchMedia("only screen and (max-device-width: 850px)").matches);
 const supportsTouch = () => Boolean(window.matchMedia("(hover: none)").matches);
 const isMobile = () => usingMobileLayout() || supportsTouch();
@@ -51,7 +49,7 @@ const validateEmail = (email) => email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()
 
 function updateOrientation(doInvert) {
     doInvert = doInvert ? -1 : 1;
-    if (doInvert * window$.width() > doInvert * window$.height()) {
+    if (doInvert * $(window).width() > doInvert * $(window).height()) {
         $('body').addClass('landscape').removeClass('portrait');
     } else {
         $('body').addClass('portrait').removeClass('landscape');
@@ -240,7 +238,7 @@ $(document).ready(() => {
         .scroll((e) => {
             if (!isMobile()) return;
 
-            const newScrollTop = window$.scrollTop();
+            const newScrollTop = $(window).scrollTop();
             if (scrollTop) {
                 shiftView(SCROLL_AMOUNT * (newScrollTop - scrollTop), 0);
             }
@@ -305,9 +303,10 @@ $(document).ready(() => {
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1600), 600);
 });
 
-window$.on('orientationchange', () => {
-    // Force reload when relying on webkit-fill-available
-    if (isMobile() && !usingMobileLayout()) window.location.reload();
-    updateOrientation(true);
-});
-window$.on('resize focus', () => updateOrientation());
+$(window)
+    .on('orientationchange', () => {
+        // Force reload when relying on webkit-fill-available
+        if (isMobile() && !usingMobileLayout()) window.location.reload();
+        updateOrientation(true);
+    })
+    .on('resize focus', () => updateOrientation());
