@@ -14,9 +14,6 @@
   font-family: ZapfinoBold;
   src: url(ZapfinoForteLTPro.otf);
 }
-html {
-  height: -webkit-fill-available;
-}
 body {
   background-color: #161f30;
   margin: 0;

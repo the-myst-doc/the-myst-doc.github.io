@@ -305,8 +305,6 @@ $(document).ready(() => {
 
 $(window)
     .on('orientationchange', () => {
-        updateOrientation(true);
-
         // Force reload when relying on webkit-fill-available
         if (isMobile() && !usingMobileLayout()) {
             window.location.reload();
