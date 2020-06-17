@@ -304,9 +304,9 @@ $(document).ready(() => {
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1600), 600);
 });
 
-window$.on('orientationchange', () => {
-    // Force reload when relying on webkit-fill-available
-    if (isMobile() && !usingMobileLayout()) window.location.reload();
-    return false;
-});
+// window$.on('orientationchange', () => {
+//     // Force reload when relying on webkit-fill-available
+//     if (isMobile() && !usingMobileLayout()) window.location.reload();
+//     return false;
+// });
 window$.on('resize focus', () => resizeView());
