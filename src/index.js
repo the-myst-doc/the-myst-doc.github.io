@@ -302,6 +302,8 @@ $(document).ready(() => {
 
     setTimeout(() => setZoom(0), 400);
     setTimeout(() => $('#lower-third').animate({left: 0, opacity: 1}, 1600), 600);
+
+    console.log("Shorah b'shem! The ending has not yet been coded...")
 });
 
 $(window)
