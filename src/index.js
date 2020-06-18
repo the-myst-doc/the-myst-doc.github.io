@@ -13,7 +13,8 @@ let rotation = 0;
 let isDragging = false, isPinching = false;
 let isValidEmail = false;
 let didDrag = false;
-let mousePosX, mousePosY, scrollTop, pinchDist;
+let mousePosX = null, mousePosY = null;
+let scrollTop, pinchDist;
 let bodyWidth, bodyHeight;
 
 const CAMERA_BACKGROUND_RATIO = 2;
@@ -36,8 +37,8 @@ const isMobile = () => usingMobileLayout() || supportsTouch();
 
 const randFloat = (center, magnitude) => center + (Math.random() - 0.5) * magnitude;
 const getPos = (e) => ({
-    posX: e.clientX || e.changedTouches[0].clientX,
-    posY: e.clientY || e.changedTouches[0].clientY,
+    posX: e.clientX || (e.changedTouches ? e.changedTouches[0].clientX : null),
+    posY: e.clientY || (e.changedTouches ? e.changedTouches[0].clientY : null),
 });
 const getDist = (e) => {
     if (e.touches.length !== 2) return false;
@@ -281,8 +282,7 @@ $(document).ready(() => {
 
             const {posX, posY} = getPos(e);
 
-            // Cursor event, not touch event
-            if (mousePosX && mousePosY) {
+            if (![mousePosX, mousePosY, posX, posY].includes(null)) {
                 shiftView(
                     posX - mousePosX,
                     posY - mousePosY,
