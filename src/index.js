@@ -65,6 +65,7 @@ $(document).ready(() => {
     const linkingTitle$ = $('#linking-title');
     const linkingPanel$ = $('#linking-panel');
     const zoomBtn$ = $('#zoom');
+    const recordBtn$ = $('#record-btn');
 
     // Load assets dynamically
     function loadAsset(el$, asset, attr = 'src') {
@@ -115,6 +116,7 @@ $(document).ready(() => {
         setTimeout(() => linkingTitle$.animate({opacity: 0.8}, FADE_IN_DURATION), 500);
 
         zoomBtn$.hide();
+        recordBtn$.hide();
 
         if (!isMobile()) {
             shakeLinkingPanel();
@@ -293,7 +295,7 @@ $(document).ready(() => {
             mousePosY = posY;
         })
 
-    $('#record-btn').click(() => $('#recording').toggle());
+    recordBtn$.click(() => $('#recording').toggle());
 
     $('.social').clone().prependTo('#mobile-footer');
 
