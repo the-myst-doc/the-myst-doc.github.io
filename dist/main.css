@@ -37,13 +37,18 @@ body {
 }
 #content .press {
   position: absolute;
-  top: 70px;
+  top: 30px;
   right: 20px;
-  color: #005766;
-  opacity: 0.3;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: white;
+  opacity: 0.55;
+  padding-bottom: 2px;
 }
 #content .press:hover {
-  border-bottom: 2px solid #005766;
+  top: 30.5px;
+  opacity: 0.75;
+  border-bottom: 1px solid white;
 }
 .disable-selection {
   -webkit-touch-callout: none;
@@ -85,7 +90,6 @@ body {
 }
 .press {
   display: block;
-  font-size: 22px;
   font-family: 'Exo 2', sans-serif;
   text-decoration: none;
 }
