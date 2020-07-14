@@ -35,6 +35,16 @@ body {
   margin-right: auto;
   perspective: 1600px;
 }
+#content .press {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  color: #005766;
+  opacity: 0.3;
+}
+#content .press:hover {
+  border-bottom: 2px solid #005766;
+}
 .disable-selection {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -72,6 +82,12 @@ body {
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
+}
+.press {
+  display: block;
+  font-size: 22px;
+  font-family: 'Exo 2', sans-serif;
+  text-decoration: none;
 }
 #video-camera {
   position: absolute;
@@ -440,6 +456,7 @@ body {
   #lower-third,
   #content .social,
   #content .copyright,
+  #content .press,
   #zoom,
   #record-btn {
     display: none;
@@ -500,6 +517,12 @@ body {
     margin: 0 6px;
     font-size: 18px;
     opacity: 0.65;
+  }
+  #mobile-footer .press {
+    font-size: 18px;
+    color: white;
+    opacity: 0.45;
+    margin: 2px 0 14px 0;
   }
   #video-camera #vignette {
     box-shadow: inset 0 0 20px black, inset 0 0 40px rgba(0, 0, 0, 0.6);

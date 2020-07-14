@@ -46,6 +46,19 @@ body {
     margin-right: auto;
 
     perspective: 1600px;
+
+    .press {
+        position: absolute;
+        top: 70px;
+        right: 20px;
+
+        color: darken(@pop-up-color, 30%);
+        opacity: .3;
+
+        &:hover {
+            border-bottom: 2px solid darken(@pop-up-color, 30%);
+        }
+    }
 }
 
 .disable-selection {
@@ -93,6 +106,13 @@ body {
             }
         }
     }
+}
+
+.press {
+    display: block;
+    font-size: 22px;
+    font-family: 'Exo 2', sans-serif;
+    text-decoration: none;
 }
 
 #video-camera {
@@ -553,7 +573,7 @@ body {
         box-shadow: 0 0 10px black;
     }
 
-    #lower-third, #content .social, #content .copyright, #zoom, #record-btn {
+    #lower-third, #content .social, #content .copyright, #content .press, #zoom, #record-btn {
         display: none;
     }
 
@@ -626,6 +646,13 @@ body {
                 font-size: 18px;
                 opacity: 0.65;
             }
+        }
+
+        .press {
+            font-size: 18px;
+            color: white;
+            opacity: 0.45;
+            margin: 2px 0 14px 0;
         }
     }
 
