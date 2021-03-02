@@ -15,7 +15,8 @@
     src: url('../fonts/ZapfinoForteLTPro.otf');
 }
 
-@bg-color: #2e4264;
+@fangamer-color: #4b6b8d;
+@bg-color: darken(@fangamer-color, 12%);
 @pop-up-color: rgb(0, 217, 255);
 @text-color: white;
 @copyright-color: #999;
@@ -56,13 +57,13 @@ body {
 
         font-size: 18px;
         color: white;
-        opacity: .55;
+        opacity: .65;
 
         padding-bottom: 2px;
 
         &:hover {
-            top: 30.5px;
-            opacity: .75;
+            top: 30px;
+            opacity: .95;
             border-bottom: 1px solid white;
         }
     }
@@ -85,7 +86,9 @@ body {
     width: 100%;
     height: 60px;
 
-    background-color: rgba(5, 206, 120, .8);
+    background-color: fade(lighten(@fangamer-color, 15%), 60%);
+    background-image: url('../img/bg-galactamari.png');
+    background-size: 250px;
 
     a {
         display: flex;
@@ -94,23 +97,16 @@ body {
 
         margin-left: auto;
         margin-right: auto;
-        width: 500px;
+        width: 580px;
 
         color: white;
         font-family: 'Exo 2', sans-serif;
         font-size: 30px;
         line-height: 60px;
 
-        span {
-            position: relative;
-
-            #kickstarter {
-                height: 34px;
-                position: absolute;
-                top: 50%;
-                left: 10px;
-                transform: translateY(-50%);
-            }
+        #fangamer {
+            height: 36px;
+            margin: 13px;
         }
     }
 }
@@ -380,7 +376,7 @@ body {
         opacity: 0.7;
 
         &:hover, &:focus-within {
-            opacity: 1;
+            opacity: .9;
         }
 
         #email {
@@ -674,11 +670,12 @@ body {
                 height: 42px;
                 a {
                     font-size: 26px;
-                    width: 380px;
+                    width: 480px;
                     line-height: 42px;
 
                     img {
-                        height: 24px;
+                        height: 28px;
+                        margin: 8px 12px;
                     }
                 }
             }
@@ -710,15 +707,15 @@ body {
 
     body.portrait {
         #content #banner {
-            height: 50px;
+            height: 42px;
             a {
                 width: 335px;
-                line-height: 50px;
-                font-size: 22px;
+                line-height: 42px;
+                font-size: 18px;
 
                 img {
-                    height: auto;
-                    width: 210px;
+                    height: 20px;
+                    margin: 12px 8px;
                 }
             }
         }

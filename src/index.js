@@ -6,9 +6,10 @@ import GearGlow from '../img/gear_glow.png';
 import ZoomBtn from '../img/zoom_btn.png';
 import ZoomHover from '../img/zoom_btn_hover.png';
 import MystDocOg from '../img/tmd_social_thumbnail.png';
-import Kickstarter from '../img/kickstarter_logo.png';
 import LinkingSound from '../audio/linking.wav';
 import LinkingPanel from '../video/red_panel.mov';
+import FangamerBg from '../img/bg-galactamari.png';
+import FangamerLogo from '../img/fangamer-logo.png';
 
 let rotation = 0;
 let isDragging = false, isPinching = false;
@@ -77,7 +78,7 @@ $(document).ready(() => {
     loadAsset($('#zoom-btn'), ZoomBtn);
     loadAsset($('#zoom-btn-hover'), ZoomHover);
     loadAsset($('#linking-panel source'), LinkingPanel);
-    loadAsset($('#kickstarter'), Kickstarter);
+    loadAsset($('#fangamer'), FangamerLogo);
 
     const linkingSound$ = $('#linking-sound');
     loadAsset(linkingSound$.find('source'), LinkingSound);

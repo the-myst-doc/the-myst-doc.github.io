@@ -15,7 +15,7 @@
   src: url(ZapfinoForteLTPro.otf);
 }
 body {
-  background-color: #161f30;
+  background-color: #1b2733;
   margin: 0;
 }
 #content {
@@ -23,7 +23,7 @@ body {
   background-size: 150% auto;
   background-position: 60% 20%;
   background-repeat: no-repeat;
-  background-color: #2e4264;
+  background-color: #364d65;
   box-shadow: inset 0 0 130px rgba(0, 0, 0, 0.5);
   height: 100vh;
   height: -webkit-fill-available;
@@ -43,12 +43,12 @@ body {
   transform: translateY(-50%);
   font-size: 18px;
   color: white;
-  opacity: 0.55;
+  opacity: 0.65;
   padding-bottom: 2px;
 }
 #content .press:hover {
-  top: 30.5px;
-  opacity: 0.75;
+  top: 30px;
+  opacity: 0.95;
   border-bottom: 1px solid white;
 }
 .disable-selection {
@@ -65,7 +65,9 @@ body {
   left: 0;
   width: 100%;
   height: 60px;
-  background-color: rgba(5, 206, 120, 0.8);
+  background-color: rgba(113, 145, 179, 0.6);
+  background-image: url(bg-galactamari.png);
+  background-size: 250px;
 }
 #banner a {
   display: flex;
@@ -73,21 +75,15 @@ body {
   cursor: url(pointer_hand.png), pointer;
   margin-left: auto;
   margin-right: auto;
-  width: 500px;
+  width: 580px;
   color: white;
   font-family: 'Exo 2', sans-serif;
   font-size: 30px;
   line-height: 60px;
 }
-#banner a span {
-  position: relative;
-}
-#banner a span #kickstarter {
-  height: 34px;
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
+#banner a #fangamer {
+  height: 36px;
+  margin: 13px;
 }
 .press {
   display: block;
@@ -286,7 +282,7 @@ body {
   z-index: 1000;
   margin: 0;
   padding: 8px 0 15px 0;
-  background-color: rgba(46, 66, 100, 0.82);
+  background-color: rgba(54, 77, 101, 0.82);
   box-shadow: 0 -1px 8px rgba(0, 0, 0, 0.5);
   text-align: left;
   transform: translateZ(100px) scale(0.94);
@@ -303,7 +299,7 @@ body {
 }
 #footer form:hover,
 #footer form:focus-within {
-  opacity: 1;
+  opacity: 0.9;
 }
 #footer form #email {
   height: 40px;
@@ -468,7 +464,7 @@ body {
   }
   #footer {
     text-align: center;
-    background: #2e4264;
+    background: #364d65;
   }
   #footer form {
     margin: 0;
@@ -538,11 +534,12 @@ body {
   }
   body.landscape #content #banner a {
     font-size: 26px;
-    width: 380px;
+    width: 480px;
     line-height: 42px;
   }
   body.landscape #content #banner a img {
-    height: 24px;
+    height: 28px;
+    margin: 8px 12px;
   }
   body.landscape #content #title {
     transform: translateY(-50%) scale(0.55);
@@ -561,16 +558,16 @@ body {
   }
   /* Portrait-only */
   body.portrait #content #banner {
-    height: 50px;
+    height: 42px;
   }
   body.portrait #content #banner a {
     width: 335px;
-    line-height: 50px;
-    font-size: 22px;
+    line-height: 42px;
+    font-size: 18px;
   }
   body.portrait #content #banner a img {
-    height: auto;
-    width: 210px;
+    height: 20px;
+    margin: 12px 8px;
   }
   body.portrait #title {
     top: 30px;
