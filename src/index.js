@@ -49,7 +49,7 @@ const getDist = (e) => {
         Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2)
     );
 };
-const validateEmail = (email) => email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i) || false;
+const validateEmail = (email) => Boolean(email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i));
 
 function updateOrientation(doInvert) {
     doInvert = doInvert ? -1 : 1;
